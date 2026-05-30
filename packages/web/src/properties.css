@@ -1,0 +1,192 @@
+@property --t-mode-colour-scaling {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --t-base-hue {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 263deg;
+}
+
+@property --t-chroma-base {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.08;
+}
+
+@property --t-lightness-base {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.84;
+}
+
+@property --t-colour-base {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0.84 0.08 263deg);
+}
+
+@property --t-colour-base-high-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0.46 0.08 263deg);
+}
+
+@property --t-colour-base-low-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0.92 0.08 263deg);
+}
+
+@property --t-colour-full-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: black;
+}
+
+@property --t-colour-page-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0.99 0 0);
+}
+
+@property --t-colour-font {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: black;
+}
+
+@property --t-size-clickable-area {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 44px;
+}
+
+@property --t-size-font {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 16px;
+}
+
+@property --t-spacing-fixed {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 16px;
+}
+
+@property --t-spacing-relative {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 16px;
+}
+
+@property --t-spacing-fixed-in-group {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 8px;
+}
+
+@property --t-spacing-relative-in-group {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 8px;
+}
+
+@property --t-spacing-fixed-inline {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 4px;
+}
+
+@property --t-spacing-relative-inline {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 4px;
+}
+
+@property --t-spacing-fixed-large {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 32px;
+}
+
+@property --t-spacing-relative-large {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 32px;
+}
+
+@property --t-font-family {
+  syntax: "<custom-ident>#";
+  inherits: true;
+  initial-value: Roboto, Verdana, Arial, Helvetica, sans-serif;
+}
+
+@property --t-transition-duration-long {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.4s;
+}
+
+@property --t-transition-duration-medium {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.2s;
+}
+
+@property --t-transition-duration-short {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 0.1s;
+}
+
+:root {
+  --t-size-clickable-area: 2.75rem;
+  --t-size-font: 1rem;
+  --t-spacing-relative: 1rem;
+  --t-spacing-relative-in-group: 0.5rem;
+  --t-spacing-relative-inline: 0.25rem;
+  --t-spacing-relative-large: 2rem;
+
+  @media (prefers-color-scheme: dark) {
+    --t-mode-colour-scaling: -1;
+  }
+
+  @media (prefers-reduced-motion) {
+    --t-transition-duration-long: 0;
+    --t-transition-duration-medium: 0;
+    --t-transition-duration-short: 0;
+  }
+}
+
+:root,
+.t-styler {
+  --t-chroma-base-light: 0.08;
+  --t-chroma-base-dark: 0.24;
+  --t-chroma-base: calc((var(--t-chroma-base-light) + var(--t-chroma-base-dark) + (var(--t-chroma-base-light) - var(--t-chroma-base-dark)) * var(--t-mode-colour-scaling)) / 2); /* (sum + diff * scaling)/2 */
+  --t-lightness-base-light: 0.84;
+  --t-lightness-base-dark: 0.39;
+  --t-lightness-base: calc((var(--t-lightness-base-light) + var(--t-lightness-base-dark) + (var(--t-lightness-base-light) - var(--t-lightness-base-dark)) * var(--t-mode-colour-scaling)) / 2);
+  --t-colour-base: oklch(var(--t-lightness-base) var(--t-chroma-base) var(--t-base-hue));
+
+  --t-lightness-base-high-contrast-light: 0.46;
+  --t-lightness-base-high-contrast-dark: 0.72;
+  --t-lightness-base-high-contrast: calc((var(--t-lightness-base-high-contrast-light) + var(--t-lightness-base-high-contrast-dark) + (var(--t-lightness-base-high-contrast-light) - var(--t-lightness-base-high-contrast-dark)) * var(--t-mode-colour-scaling)) / 2);
+  --t-colour-base-high-contrast: oklch(from var(--t-colour-base) var(--t-lightness-base-high-contrast) c h);
+
+  --t-lightness-base-low-contrast-light: 0.92;
+  --t-lightness-base-low-contrast-dark: 0.31;
+  --t-lightness-base-low-contrast: calc((var(--t-lightness-base-low-contrast-light) + var(--t-lightness-base-low-contrast-dark) + (var(--t-lightness-base-low-contrast-light) - var(--t-lightness-base-low-contrast-dark)) * var(--t-mode-colour-scaling)) / 2);
+  --t-colour-base-low-contrast: oklch(from var(--t-colour-base) var(--t-lightness-base-low-contrast) c h);
+
+  --t-colour-page-background-lightness-light: 0.99;
+  --t-colour-page-background-lightness-dark: 0.21;
+  --t-colour-page-background-lightness: calc((var(--t-colour-page-background-lightness-light) + var(--t-colour-page-background-lightness-dark) + (var(--t-colour-page-background-lightness-light) - var(--t-colour-page-background-lightness-dark)) * var(--t-mode-colour-scaling)) / 2);
+  --t-colour-page-background: oklch(var(--t-colour-page-background-lightness) 0 0);
+
+  --t-colour-full-contrast: hsl(0 0 calc((1 - var(--t-mode-colour-scaling)) * 50%));
+  --t-colour-font: var(--t-colour-full-contrast);
+  --t-colour-input-field-background: color-mix(in oklab, var(--t-colour-full-contrast) 5%, transparent);
+}

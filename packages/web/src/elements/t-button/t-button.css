@@ -1,0 +1,79 @@
+.t-button {
+    --button-colour: var(--t-colour-base);
+    --button-padding: calc((var(--height) - var(--t-size-font)) / 2);
+    --height: var(--t-button-height, var(--t-size-clickable-area));
+    --box-shadow-outset:
+            color-mix(in oklab, white 25%, transparent) 0 1px 1px,
+            color-mix(in oklab, black 25%, transparent) 0 -1px 1px,
+            rgb(0 0 0 / 0.2) 0 -1px 1px;
+    --box-shadow-inset:
+            inset color-mix(in oklab, var(--button-colour) 75%, white) 0 1px,
+            inset color-mix(in oklab, var(--button-colour) 75%, black) 0 -1px;
+    align-items: center;
+    background: var(--button-colour);
+    border-radius: var(--height);
+    border: 0 solid var(--t-colour-base-high-contrast);
+    box-shadow: var(--box-shadow-inset), var(--box-shadow-outset);
+    box-sizing: border-box;
+    color: var(--t-colour-font);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: var(--t-font-family), serif;
+    font-size: var(--t-size-font);
+    gap: var(--t-spacing-fixed-inline);
+    line-height: 1;
+    min-height: var(--height);
+    padding: var(--button-padding);
+
+    slot[name="icon"] {
+        align-self: center;
+    }
+
+    &.transparent {
+        --button-colour: transparent;
+    }
+
+    &.without-background {
+        background: none;
+        box-shadow: none;
+        color: var(--t-colour-base-high-contrast);
+        margin: calc(var(--button-padding) * -1);
+
+        &:hover {
+            background: color-mix(in oklab, var(--t-colour-base) 25%, transparent);
+        }
+
+        &:active {
+            background: var(--t-colour-base);
+        }
+    }
+
+    &.link {
+        background: none;
+        border-radius: 0;
+        box-shadow: none;
+        color: var(--t-colour-base-high-contrast);
+        margin: 0;
+        padding: 0;
+
+        &:hover {
+            background: none;
+            text-decoration: underline;
+        }
+    }
+
+    &:not(:disabled):hover {
+        --button-colour: color-mix(in oklab, var(--t-colour-base) 75%, white);
+    }
+
+    &:not(:disabled):not(.link):active {
+        background: var(--button-colour);
+        box-shadow: var(--box-shadow-outset);
+        transform: scale(0.96);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}

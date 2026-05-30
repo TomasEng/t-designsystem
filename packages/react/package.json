@@ -1,0 +1,34 @@
+{
+  "name": "t-designsystem-react",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@lit/react": "1.0.8",
+    "react": "19.2.6",
+    "t-designsystem": "workspace:^"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/node": "25.6.0",
+    "@types/react": "19.2.14",
+    "@vitejs/plugin-react": "6.0.1",
+    "@vitest/browser-playwright": "4.1.5",
+    "eslint": "9.39.4",
+    "eslint-plugin-react": "7.37.5",
+    "playwright": "1.59.1",
+    "vitest": "4.1.5",
+    "vitest-browser-react": "2.2.0"
+  }
+}
