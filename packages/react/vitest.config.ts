@@ -5,6 +5,7 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [react()],
   test: {
+    setupFiles: "./setup-tests.ts",
     browser: {
       enabled: true,
       headless: true,

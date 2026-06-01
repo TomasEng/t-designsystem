@@ -9,16 +9,18 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./t-designsystem.css": {
+      "import": "./dist/t-designsystem.css"
     }
   },
+  "files": ["dist"],
   "scripts": {
     "build": "tsc && vite build && pnpm run build-types",
     "build-storybook": "storybook build",
     "build-types": "tsc --project tsconfig.build-types.json",
-    "dev": "vite",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
     "typecheck": "tsc --noEmit"

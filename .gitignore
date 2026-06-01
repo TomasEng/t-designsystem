@@ -29,4 +29,5 @@ storybook-static
 **/__screenshots__
 
 .vitest-attachments
+*.tgz
 
