@@ -1,1 +1,1 @@
-import "t-designsystem";
+import "tomas-designsystem";

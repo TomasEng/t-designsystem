@@ -2,14 +2,14 @@ name: Publisere Storybook til Github Pages
 on:
   push:
     branches:
-      - 'master'
+      - "master"
   workflow_dispatch:
 permissions:
   contents: read
   pages: write
   id-token: write
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 jobs:
   deploy:
@@ -29,8 +29,8 @@ jobs:
       - name: Sette opp Node
         uses: actions/setup-node@v6
         with:
-          node-version: '24'
-          cache: 'pnpm'
+          node-version: "24"
+          cache: "pnpm"
       - name: Installere avhengigheter
         run: pnpm install
       - name: Bygge Storybook
@@ -38,7 +38,7 @@ jobs:
       - name: Laste opp Pages-artifakt
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'packages/web/storybook-static'
+          path: "packages/web/storybook-static"
       - id: deploy
         name: Rulle ut til Github Pages
         uses: actions/deploy-pages@v4

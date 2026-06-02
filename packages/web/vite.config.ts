@@ -5,7 +5,7 @@ export default defineConfig({
     target: "esnext",
     lib: {
       entry: "src/index.ts",
-      name: "t-designsystem",
+      name: "tomas-designsystem",
       formats: ["es"],
       fileName: () => "index.js",
     },

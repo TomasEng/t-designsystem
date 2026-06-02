@@ -19,7 +19,7 @@
     "rootDir": "./src",
     "declaration": true,
     "jsx": "react",
-    "types": ["node", "react", "@testing-library/jest-dom", "t-designsystem"]
+    "types": ["node", "react", "@testing-library/jest-dom", "tomas-designsystem"]
   },
   "include": ["src"]
 }
