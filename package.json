@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "build-storybook": "cd packages/web && pnpm build-storybook",
     "codestyle": "prettier --check .",
     "codestyle:fix": "prettier --write .",
     "lint": "eslint .",
