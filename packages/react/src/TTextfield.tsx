@@ -1,7 +1,7 @@
 import { createComponent } from "@lit/react";
 import React, { type FunctionComponent } from "react";
-import { TTextfield as TTextfieldElement } from "t-designsystem";
-import type { TTextfieldAttributes, TTextfieldEvent } from "t-designsystem";
+import { TTextfield as TTextfieldElement } from "tomas-designsystem";
+import type { TTextfieldAttributes, TTextfieldEvent } from "tomas-designsystem";
 import type { EventList } from "./types/EventList.js";
 import type { TWebComponentProps } from "./types/TWebComponentProps.js";
 

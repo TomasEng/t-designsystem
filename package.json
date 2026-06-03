@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build-storybook": "cd packages/web && pnpm build-storybook",
+    "build": "pnpm -r build",
+    "build-storybook": "pnpm --filter tomas-designsystem build-storybook",
     "codestyle": "prettier --check .",
     "codestyle:fix": "prettier --write .",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck"
   },
   "devDependencies": {
     "@eslint/js": "9.39.4",
