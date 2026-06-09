@@ -12,6 +12,11 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      source: {
+        excludeDecorators: true,
+      },
+    },
   },
   decorators: styler,
   loaders: [

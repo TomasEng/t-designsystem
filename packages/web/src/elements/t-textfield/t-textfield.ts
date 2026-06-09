@@ -13,13 +13,16 @@ export type TTextfieldAttributes = {
 
 export type TTextfieldEventName = EventName<keyof TTextfieldEvent>;
 export type TTextfieldEvent = {
-  input: InputEvent;
-  change: InputEvent;
-  keydown: KeyboardEvent;
-  keyup: KeyboardEvent;
-  focus: FocusEvent;
-  blur: FocusEvent;
+  input: TInputEvent;
+  change: TInputEvent;
+  keydown: TKeyboardEvent;
+  keyup: TKeyboardEvent;
+  focus: TFocusEvent;
+  blur: TFocusEvent;
 };
+export type TInputEvent = { value: string };
+export type TKeyboardEvent = { key: string; value: string };
+export type TFocusEvent = { value: string };
 
 @customElement("t-textfield")
 export class TTextfield extends LitElement implements TTextfieldAttributes {
@@ -42,29 +45,35 @@ export class TTextfield extends LitElement implements TTextfieldAttributes {
     return input;
   }
 
-  private handleInput(e: InputEvent): void {
-    this.internals.setFormValue(this.input.value);
-    this.dispatchEvent(new CustomEvent<InputEvent>("t-input", { detail: e }));
+  private handleInput(): void {
+    const { value } = this.input;
+    this.internals.setFormValue(value);
+    this.dispatchEvent(new CustomEvent<TInputEvent>("t-input", { detail: { value } }));
   }
 
-  private handleChange(e: InputEvent): void {
-    this.dispatchEvent(new CustomEvent<InputEvent>("t-change", { detail: e }));
+  private handleChange(): void {
+    const { value } = this.input;
+    this.dispatchEvent(new CustomEvent<TInputEvent>("t-change", { detail: { value } }));
   }
 
   private handleKeyDown(e: KeyboardEvent): void {
-    this.dispatchEvent(new CustomEvent<KeyboardEvent>("t-keydown", { detail: e }));
+    const { value } = this.input;
+    this.dispatchEvent(new CustomEvent<TKeyboardEvent>("t-keydown", { detail: { value, key: e.key } }));
   }
 
   private handleKeyUp(e: KeyboardEvent): void {
-    this.dispatchEvent(new CustomEvent<KeyboardEvent>("t-keyup", { detail: e }));
+    const { value } = this.input;
+    this.dispatchEvent(new CustomEvent<TKeyboardEvent>("t-keyup", { detail: { value, key: e.key } }));
   }
 
-  private handleFocus(e: FocusEvent): void {
-    this.dispatchEvent(new CustomEvent<FocusEvent>("t-focus", { detail: e }));
+  private handleFocus(): void {
+    const { value } = this.input;
+    this.dispatchEvent(new CustomEvent<TFocusEvent>("t-focus", { detail: { value } }));
   }
 
-  private handleBlur(e: FocusEvent): void {
-    this.dispatchEvent(new CustomEvent<FocusEvent>("t-blur", { detail: e }));
+  private handleBlur(): void {
+    const { value } = this.input;
+    this.dispatchEvent(new CustomEvent<TFocusEvent>("t-blur", { detail: { value } }));
   }
 
   render(): TemplateResult {

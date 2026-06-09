@@ -9,6 +9,7 @@
     "codestyle:fix": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "storybook": "pnpm --filter tomas-designsystem storybook",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck"
   },
