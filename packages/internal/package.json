@@ -1,0 +1,17 @@
+{
+  "name": "internal",
+  "version": "0.0.0",
+  "scripts": {
+    "generate-types": "node src/generate-types.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "typecheck": "tsc"
+  },
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vitest": "4.1.8"
+  }
+}
