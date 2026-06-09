@@ -8,7 +8,7 @@ const meta = {
   render: (): TemplateResult => html`
     <form method="get">
       <t-textfield name="navn" label="Navn"></t-textfield>
-      <t-button type="submit">Send inn</t-button>
+      <button class="t-button" type="submit">Send inn</button>
     </form>
   `,
 } satisfies Meta;

@@ -1,5 +1,6 @@
 import React from "react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
 import { TButton, TTextField } from "./index.js";
 import type { RenderResult } from "vitest-browser-react";
@@ -23,6 +24,19 @@ describe("package", () => {
       const label = "Test";
       const screen = await renderTextfield({ label });
       expect(screen.getByRole("textbox", { name: label })).toBeInTheDocument();
+    });
+
+    it("Calls the onTInput event handler when the user types something", async () => {
+      const onTInput = vi.fn();
+      const user = userEvent.setup();
+      const screen = await renderTextfield({ onTInput });
+      const textbox = screen.getByRole("textbox");
+      await user.type(textbox, "a");
+      expect(onTInput).toHaveBeenCalledTimes(1);
+      expect(textbox).toHaveValue("a");
+      const event = onTInput.mock.calls[0][0] as CustomEvent<InputEvent>;
+      expect(event.detail.value).toBe("a");
+      expect(event.target.input.value).toBe("a");
     });
 
     function renderTextfield(props: Partial<TTextFieldProps>): Promise<RenderResult> {
