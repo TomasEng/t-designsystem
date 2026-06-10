@@ -31,3 +31,5 @@ storybook-static
 .vitest-attachments
 *.tgz
 
+coverage
+
