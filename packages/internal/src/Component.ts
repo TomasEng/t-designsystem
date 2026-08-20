@@ -3,7 +3,7 @@ import type { typeSpec } from "./typeSpec.js";
 
 export type Component = WebComponent | ElementWithClass;
 
-type WebComponent = {
+export type WebComponent = {
   type: "web";
   name: string;
   attributes: Record<string, AttributeInfo>;

@@ -7,7 +7,7 @@ import { userEvent } from "vitest/browser";
 import "../../properties.css";
 import { type RenderResult, render } from "vitest-browser-lit";
 import type { Locator, UserEvent } from "vitest/browser";
-import type { TTextfieldAttributes } from "./t-textfield.ts";
+import type { TTextfieldAttributes } from "../../types/generated.ts";
 
 expect.extend(matchers);
 

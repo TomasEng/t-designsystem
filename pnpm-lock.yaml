@@ -114,6 +114,9 @@ importers:
       '@open-wc/lit-helpers':
         specifier: 0.7.0
         version: 0.7.0(lit@3.3.2)
+      internal:
+        specifier: workspace:^
+        version: link:../internal
       lit:
         specifier: 3.3.2
         version: 3.3.2

@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@open-wc/lit-helpers": "0.7.0",
+    "internal": "workspace:^",
     "lit": "3.3.2"
   },
   "devDependencies": {
