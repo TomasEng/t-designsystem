@@ -1,4 +1,4 @@
-import type { ArrayType, ConstantType, ObjectType, Type, UnionType } from "./Type.ts";
+import type { ArrayType, ConstantType, ObjectType, Type, UnionType } from "../Type.ts";
 
 export function generateType(type: Type): string {
   switch (type.kind) {

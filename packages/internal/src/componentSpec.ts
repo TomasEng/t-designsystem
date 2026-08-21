@@ -2,6 +2,14 @@ import type { Component } from "./Component.js";
 
 export const componentSpec: Component[] = [
   {
+    type: "class",
+    htmlElement: "button",
+    className: "t-button",
+    variantClasses: {
+      variant: ["default", "transparent", "link", "without-background"],
+    },
+  },
+  {
     type: "web",
     name: "t-textfield",
     attributes: {

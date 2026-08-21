@@ -3,6 +3,8 @@ import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
 import { TButton, TTextField } from "./index.js";
+import type { TInputEvent } from "internal/generated/types.ts";
+import type { TTextfield as TTextfieldElement } from "tomas-designsystem";
 import type { RenderResult } from "vitest-browser-react";
 import type { TButtonProps, TTextFieldProps } from "./index.js";
 
@@ -34,9 +36,9 @@ describe("package", () => {
       await user.type(textbox, "a");
       expect(onTInput).toHaveBeenCalledTimes(1);
       expect(textbox).toHaveValue("a");
-      const event = onTInput.mock.calls[0][0] as CustomEvent<InputEvent>;
+      const event = onTInput.mock.calls[0][0] as CustomEvent<TInputEvent>;
       expect(event.detail.value).toBe("a");
-      expect(event.target.input.value).toBe("a");
+      expect((event.target as TTextfieldElement).input.value).toBe("a");
     });
 
     function renderTextfield(props: Partial<TTextFieldProps>): Promise<RenderResult> {

@@ -12,6 +12,7 @@ export type WebComponent = {
 
 type ElementWithClass = {
   type: "class";
+  htmlElement: string;
   className: string;
   variantClasses: Record<string, string[]>;
 };

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { generateType } from "./generateType.ts";
-import type { NullType, PrimitiveType, ArrayType, ObjectType, UnionType, ConstantType } from "./Type.ts";
+import type { NullType, PrimitiveType, ArrayType, ObjectType, UnionType, ConstantType } from "../Type.ts";
 
 describe("generateType", () => {
   it('Generates "null" from a null type', () => {

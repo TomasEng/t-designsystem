@@ -1,19 +1,17 @@
-import { writeFile } from "node:fs/promises";
-import { componentSpec } from "./componentSpec.ts";
+import { format } from "prettier";
+import { componentSpec } from "../componentSpec.ts";
+import { typeSpec } from "../typeSpec.ts";
 import { generateType } from "./generateType.ts";
-import { typeSpec } from "./typeSpec.ts";
-import type { Component, WebComponent } from "./Component.ts";
-import type { ObjectType, Type } from "./Type.ts";
+import type { Component, WebComponent } from "../Component.ts";
+import type { ObjectType, Type } from "../Type.ts";
 
-console.log("Genererer typer.");
-
-const contentString = generateDefinitions() + "\n" + generateAttributeTypes();
-await writeToFile("generated/types.ts", contentString);
-
-async function writeToFile(fileName: string, content: string): Promise<void> {
-  console.log("Genererer " + fileName);
-  await writeFile(fileName, content, "utf8");
-  console.log("Ferdig.");
+export async function generateTypesFileContent(): Promise<string> {
+  const code = generateDefinitions() + "\n" + generateAttributeTypes();
+  return await format(code, {
+    parser: "typescript",
+    printWidth: 120,
+    endOfLine: "lf",
+  });
 }
 
 function generateDefinitions(): string {

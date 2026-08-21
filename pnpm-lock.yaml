@@ -47,6 +47,12 @@ importers:
 
   packages/internal:
     devDependencies:
+      '@types/node':
+        specifier: 25.6.0
+        version: 25.6.0
+      prettier:
+        specifier: 3.8.3
+        version: 3.8.3
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -59,6 +65,9 @@ importers:
       '@lit/react':
         specifier: 1.0.8
         version: 1.0.8(@types/react@19.2.14)
+      internal:
+        specifier: workspace:^
+        version: link:../internal
       tomas-designsystem:
         specifier: workspace:^
         version: link:../web
