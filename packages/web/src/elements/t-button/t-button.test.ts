@@ -1,7 +1,6 @@
 import * as matchers from "@testing-library/jest-dom/matchers";
 import { html } from "lit";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import "./t-button.ts";
 import { userEvent } from "vitest/browser";
 import "../../properties.css";
 import { render } from "vitest-browser-lit";

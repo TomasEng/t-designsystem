@@ -10,7 +10,7 @@ export type WebComponent = {
   events: Record<string, EventInfo>;
 };
 
-type ElementWithClass = {
+export type ElementWithClass = {
   type: "class";
   htmlElement: string;
   className: string;

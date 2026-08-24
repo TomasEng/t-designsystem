@@ -1,6 +1,6 @@
 import React, { type ButtonHTMLAttributes } from "react";
 import { classNames } from "./utils.js";
-import type { TButtonClasses } from "tomas-designsystem";
+import type { TButtonClasses } from "./types/generated.js";
 
 export type TButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & TButtonClasses;
 

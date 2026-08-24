@@ -18,6 +18,8 @@ export function generateType(type: Type): string {
       return generateUnionType(type);
     case "constant":
       return generateConstantType(type);
+    case "reference":
+      return type.name;
   }
 }
 

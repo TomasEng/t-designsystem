@@ -34,4 +34,10 @@ describe("generateTypesFileContent", () => {
     const code = await generateTypesFileContent();
     expect(code).toContain("export type TTextfieldAttributes =");
   });
+
+  it("Includes variant class types", async () => {
+    const code = await generateTypesFileContent();
+    expect(code).toContain("export type TButtonClasses =");
+    expect(code).toContain("export type TButtonVariant =");
+  });
 });

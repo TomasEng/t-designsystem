@@ -1,4 +1,4 @@
-export type Type = NullType | PrimitiveType | ArrayType | ObjectType | UnionType | ConstantType;
+export type Type = NullType | PrimitiveType | ArrayType | ObjectType | UnionType | ConstantType | ReferenceType;
 
 export type NullType = { kind: "null" };
 
@@ -27,6 +27,11 @@ export type UnionType = {
   types: Type[];
 };
 
+export type ReferenceType = {
+  kind: "reference";
+  name: string;
+};
+
 export type TsType<T extends Type> = T extends NullType
   ? null
   : T extends ConstantType
@@ -45,4 +50,6 @@ export type TsType<T extends Type> = T extends NullType
                 }
               : T extends { kind: "union" }
                 ? TsType<T["types"][number]>
-                : never;
+                : T extends { kind: "reference" }
+                  ? unknown
+                  : never;
