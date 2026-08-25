@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@open-wc/lit-helpers": "0.7.0",
-    "internal": "workspace:^",
     "lit": "3.3.2"
   },
   "devDependencies": {
@@ -45,6 +44,7 @@
     "@vitest/browser": "4.1.8",
     "@vitest/browser-playwright": "4.1.8",
     "@vitest/coverage-v8": "4.1.8",
+    "internal": "workspace:^",
     "playwright": "1.60.0",
     "prettier": "3.8.3",
     "react": "19.2.7",

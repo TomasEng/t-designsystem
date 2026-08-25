@@ -3,8 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
 import { TButton, TTextField } from "./index.js";
-import type { TInputEvent } from "internal/generated/types.ts";
-import type { TTextfield as TTextfieldElement } from "tomas-designsystem";
+import type { TInputEvent, TTextfield as TTextfieldElement } from "tomas-designsystem";
 import type { RenderResult } from "vitest-browser-react";
 import type { TButtonProps, TTextFieldProps } from "./index.js";
 

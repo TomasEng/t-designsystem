@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@lit/react": "1.0.8",
-    "internal": "workspace:^",
     "tomas-designsystem": "workspace:^"
   },
   "peerDependencies": {

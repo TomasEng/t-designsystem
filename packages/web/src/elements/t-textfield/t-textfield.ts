@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import "../t-field/index.ts";
 import { Assert } from "../../utils/Assert.ts";
 import type { EventName } from "../../types/EventName.ts";
-import type { TKeyboardEvent, TInputEvent, TFocusEvent, TTextfieldAttributes } from "../../types/generated.ts";
+import type { TKeyboardEvent, TInputEvent, TFocusEvent, TTextfieldAttributes } from "../../types/element-types.ts";
 
 export type TTextfieldEventName = EventName<keyof TTextfieldEvent>;
 export type TTextfieldEvent = {

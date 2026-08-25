@@ -65,9 +65,6 @@ importers:
       '@lit/react':
         specifier: 1.0.8
         version: 1.0.8(@types/react@19.2.14)
-      internal:
-        specifier: workspace:^
-        version: link:../internal
       tomas-designsystem:
         specifier: workspace:^
         version: link:../web
@@ -123,9 +120,6 @@ importers:
       '@open-wc/lit-helpers':
         specifier: 0.7.0
         version: 0.7.0(lit@3.3.2)
-      internal:
-        specifier: workspace:^
-        version: link:../internal
       lit:
         specifier: 3.3.2
         version: 3.3.2
@@ -166,6 +160,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: 4.1.8
         version: 4.1.8(@vitest/browser@4.1.8)(vitest@4.1.8)
+      internal:
+        specifier: workspace:^
+        version: link:../internal
       playwright:
         specifier: 1.60.0
         version: 1.60.0
