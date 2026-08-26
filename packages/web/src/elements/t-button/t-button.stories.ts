@@ -1,8 +1,7 @@
 import { html } from "lit";
-import "./t-button.ts";
 import { expect, fn, userEvent } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
-import type { TButtonVariant } from "./t-button.ts";
+import type { TButtonVariant } from "../../types/element-types.ts";
 
 const meta: Meta = {
   title: "Komponenter/Knapp",
