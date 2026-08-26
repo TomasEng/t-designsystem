@@ -1,0 +1,36 @@
+{
+  "name": "tomas-designsystem-docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "storybook build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "storybook dev -p 6006",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lit": "3.3.2",
+    "tomas-designsystem": "workspace:^"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "5.1.2",
+    "@storybook/addon-a11y": "10.3.5",
+    "@storybook/addon-docs": "10.3.5",
+    "@storybook/addon-vitest": "10.3.5",
+    "@storybook/web-components-vite": "10.3.5",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/user-event": "14.6.1",
+    "@vitest/browser": "4.1.8",
+    "@vitest/browser-playwright": "4.1.8",
+    "shadow-dom-testing-library": "1.13.1",
+    "storybook": "10.3.5",
+    "typescript": "6.0.3",
+    "vite": "8.2.2",
+    "vitest": "4.1.8",
+    "vitest-browser-lit": "1.0.1"
+  }
+}

@@ -19,6 +19,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["**/*.ts", "**/*.d.ts"],
-  "exclude": ["**/*.stories.ts"],
-  "files": ["declarations.d.ts"]
+  "exclude": ["node_modules"]
 }
