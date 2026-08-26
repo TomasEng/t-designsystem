@@ -1,5 +1,4 @@
 import { html } from "lit";
-import "./t-textfield.ts";
 import { expect, fn, userEvent } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 
@@ -36,7 +35,7 @@ export const Default: Story = {
     label: "Skriv noe her",
   },
   async play({ canvas }) {
-    const field = canvas.getByShadowRole("textbox", { name: "Skriv noe her" });
+    const field = (canvas as any).getByShadowRole("textbox", { name: "Skriv noe her" }); // eslint-disable-line @typescript-eslint/no-explicit-any
     expect(field).toBeInTheDocument();
     const value = "Test";
     await userEvent.type(field, value);
@@ -52,7 +51,7 @@ export const Disabled: Story = {
     disabled: true,
   },
   async play({ canvas }) {
-    const field = canvas.getByShadowRole("textbox", { name: "Skriv noe her" });
+    const field = (canvas as any).getByShadowRole("textbox", { name: "Skriv noe her" }); // eslint-disable-line @typescript-eslint/no-explicit-any
     expect(field).toBeDisabled();
     await userEvent.type(field, "a");
     await expect(onInput).not.toHaveBeenCalled();

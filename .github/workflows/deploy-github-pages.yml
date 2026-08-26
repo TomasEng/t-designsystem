@@ -34,11 +34,11 @@ jobs:
       - name: Installere avhengigheter
         run: pnpm install
       - name: Bygge Storybook
-        run: pnpm run build-storybook
+        run: pnpm run build-docs
       - name: Laste opp Pages-artifakt
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "packages/web/storybook-static"
+          path: "packages/docs/storybook-static"
       - id: deploy
         name: Rulle ut til Github Pages
         uses: actions/deploy-pages@v4

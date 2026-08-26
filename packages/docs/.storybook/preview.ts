@@ -1,8 +1,8 @@
 import { within as withinShadow } from "shadow-dom-testing-library";
 import { styler } from "../src/decorators/styler";
 import type { Preview } from "@storybook/web-components-vite";
-import "../src/properties.css";
-import "../src/elements/t-button/t-button.css";
+import "tomas-designsystem/tomas-designsystem.css";
+import "tomas-designsystem";
 
 const preview: Preview = {
   parameters: {
