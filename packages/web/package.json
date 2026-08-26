@@ -52,7 +52,7 @@
     "shadow-dom-testing-library": "1.13.1",
     "storybook": "10.3.5",
     "typescript": "6.0.3",
-    "vite": "8.0.10",
+    "vite": "8.2.2",
     "vitest": "4.1.8",
     "vitest-browser-lit": "1.0.1"
   }
