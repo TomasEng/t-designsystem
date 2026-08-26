@@ -1,7 +1,6 @@
 import { type TemplateResult, html } from "lit";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import "../elements/t-textfield";
-import "../elements/t-button";
 
 const meta = {
   title: "Eksempler/Skjema",

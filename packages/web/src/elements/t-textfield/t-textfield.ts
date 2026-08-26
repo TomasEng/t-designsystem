@@ -3,13 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import "../t-field/index.ts";
 import { Assert } from "../../utils/Assert.ts";
 import type { EventName } from "../../types/EventName.ts";
-
-export type TTextfieldAttributes = {
-  readonly name?: string;
-  readonly label?: string;
-  readonly value?: string;
-  readonly disabled?: boolean;
-};
+import type { TKeyboardEvent, TInputEvent, TFocusEvent, TTextfieldAttributes } from "../../types/element-types.ts";
 
 export type TTextfieldEventName = EventName<keyof TTextfieldEvent>;
 export type TTextfieldEvent = {
@@ -20,12 +14,9 @@ export type TTextfieldEvent = {
   focus: TFocusEvent;
   blur: TFocusEvent;
 };
-export type TInputEvent = { value: string };
-export type TKeyboardEvent = { key: string; value: string };
-export type TFocusEvent = { value: string };
 
 @customElement("t-textfield")
-export class TTextfield extends LitElement implements TTextfieldAttributes {
+export class TTextfield extends LitElement implements Readonly<TTextfieldAttributes> {
   @property({ type: String }) name: string = "";
   @property({ type: String }) label: string = "";
   @property({ type: String }) value: string = "";
