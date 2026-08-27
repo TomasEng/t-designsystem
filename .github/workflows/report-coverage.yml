@@ -16,6 +16,11 @@ jobs:
         run: sleep 180s
         shell: bash
       - uses: actions/checkout@v4
+      - name: Laste inn testdekningsinformasjon
+        uses: actions/download-artifact@v4
+        with:
+          name: vitest-coverage-report
+          path: .
       - name: Testdekning Web
         uses: davelosert/vitest-coverage-report-action@v2
         with:
