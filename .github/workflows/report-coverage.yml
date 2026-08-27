@@ -1,0 +1,16 @@
+name: report-coverage.yml
+on:
+  workflow_run:
+    workflows: ["Kjøre tester"]
+    types: [completed]
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          json-summary-path: ./coverage/coverage-summary.json
