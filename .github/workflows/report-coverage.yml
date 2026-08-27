@@ -11,6 +11,13 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: davelosert/vitest-coverage-report-action@v2
+      - name: Testdekning Web
+        uses: davelosert/vitest-coverage-report-action@v2
         with:
-          json-summary-path: ./coverage/coverage-summary.json
+          json-summary-path: ./packages/web/coverage/coverage-summary.json
+          json-final-path: ./packages/web/coverage/coverage-final.json
+      - name: Testdekning React
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          json-summary-path: ./packages/react/coverage/coverage-summary.json
+          json-final-path: ./packages/react/coverage/coverage-final.json

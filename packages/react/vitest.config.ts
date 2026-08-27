@@ -14,6 +14,7 @@ export default defineConfig({
     },
     coverage: {
       enabled: true,
+      reporter: ["text", "json-summary", "json"],
     },
   },
 });
