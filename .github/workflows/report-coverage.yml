@@ -12,8 +12,8 @@ jobs:
       pull-requests: write
       contents: read
     steps:
-      - name: Sleep for 180 seconds
-        run: sleep 180s
+      - name: Sleep for 120 seconds
+        run: sleep 120s
         shell: bash
       - uses: actions/checkout@v4
       - name: Laste inn testdekningsinformasjon
