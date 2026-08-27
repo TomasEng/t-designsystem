@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "all-checks": "pnpm build && pnpm typecheck && pnpm test && pnpm lint && pnpm codestyle",
     "build": "pnpm -r build",
     "build-docs": "pnpm --filter tomas-designsystem-docs build",
     "codestyle": "prettier --check .",
