@@ -2,7 +2,7 @@ import { html } from "lit";
 import { expect, fn, userEvent } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import type { TButtonVariant } from "tomas-designsystem";
-// Midlertidig endring for å teste
+
 const meta: Meta = {
   title: "Komponenter/Knapp",
   component: "t-button",
