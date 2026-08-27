@@ -10,7 +10,7 @@ export default defineConfig({
       instances: [{ browser: "chromium" }],
     },
     coverage: {
-      enabled: true
-    }
+      enabled: true,
+    },
   },
 });
