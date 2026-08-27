@@ -1,0 +1,30 @@
+name: report-coverage.yml
+on:
+  workflow_run:
+    workflows: ["Kjøre tester"]
+    types: [completed]
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Laste inn testdekningsinformasjon
+        uses: actions/download-artifact@v4
+        with:
+          name: vitest-coverage-report
+          path: .
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Testdekning Web
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          json-summary-path: ./packages/web/coverage/coverage-summary.json
+          json-final-path: ./packages/web/coverage/coverage-final.json
+      - name: Testdekning React
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          json-summary-path: ./packages/react/coverage/coverage-summary.json
+          json-final-path: ./packages/react/coverage/coverage-final.json
