@@ -3,6 +3,8 @@ on:
   workflow_run:
     workflows: ["Kjøre tester"]
     types: [completed]
+  pull_request:
+    types: [opened, synchronize]
 jobs:
   report:
     runs-on: ubuntu-latest
