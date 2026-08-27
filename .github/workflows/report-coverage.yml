@@ -12,6 +12,9 @@ jobs:
       pull-requests: write
       contents: read
     steps:
+      - name: Sleep for 180 seconds
+        run: sleep 180s
+        shell: bash
       - uses: actions/checkout@v4
       - name: Testdekning Web
         uses: davelosert/vitest-coverage-report-action@v2
