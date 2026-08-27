@@ -54,4 +54,6 @@ jobs:
         if: always()
         with:
           name: vitest-coverage-report
-          path: coverage/
+          path: |
+            packages/web/coverage/
+            packages/react/coverage/
