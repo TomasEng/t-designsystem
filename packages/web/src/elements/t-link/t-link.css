@@ -1,0 +1,18 @@
+.t-link {
+    --colour: var(--t-colour-base-high-contrast);
+    color: var(--colour);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.t-link:visited {
+    color: var(--t-colour-visited-link);
+}
+
+.t-link[href^="#"]:visited {
+    color: var(--colour);
+}
+
+.t-link:hover {
+    text-decoration: underline;
+}
