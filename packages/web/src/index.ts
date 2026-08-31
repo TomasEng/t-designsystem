@@ -1,5 +1,6 @@
 import "./properties.css";
 import "./elements/t-button/t-button.css";
+import "./elements/t-link/t-link.css";
 
 export { TField } from "./elements/t-field/t-field.ts";
 export type { FieldDirection } from "./elements/t-field/t-field.ts";

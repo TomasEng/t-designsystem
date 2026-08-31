@@ -2,10 +2,10 @@ import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
-import { TButton, TTextField } from "./index.js";
+import { TButton, TLink, TTextField } from "./index.js";
 import type { TInputEvent, TTextfield as TTextfieldElement } from "tomas-designsystem";
 import type { RenderResult } from "vitest-browser-react";
-import type { TButtonProps, TTextFieldProps } from "./index.js";
+import type { TButtonProps, TLinkProps, TTextFieldProps } from "./index.js";
 
 describe("package", () => {
   describe("TButton", () => {
@@ -17,6 +17,18 @@ describe("package", () => {
 
     function renderButton(props: Partial<TButtonProps> = {}): Promise<RenderResult> {
       return render(<TButton {...props} />);
+    }
+  });
+
+  describe("TLink", () => {
+    it("Renders a link with the given name", async () => {
+      const name = "Test";
+      const screen = await renderLink({ children: name, href: "#" });
+      expect(screen.getByRole("link", { name })).toBeInTheDocument();
+    });
+
+    function renderLink(props: Partial<TLinkProps> = {}): Promise<RenderResult> {
+      return render(<TLink {...props} />);
     }
   });
 

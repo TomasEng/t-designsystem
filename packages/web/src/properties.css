@@ -142,6 +142,12 @@
   initial-value: 0.1s;
 }
 
+@property --t-hue-offset-visited-link {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 30deg;
+}
+
 :root {
   --t-size-clickable-area: 2.75rem;
   --t-size-font: 1rem;
@@ -189,4 +195,6 @@
   --t-colour-full-contrast: hsl(0 0 calc((1 - var(--t-mode-colour-scaling)) * 50%));
   --t-colour-font: var(--t-colour-full-contrast);
   --t-colour-input-field-background: color-mix(in oklab, var(--t-colour-full-contrast) 5%, transparent);
+  --t-colour-link: var(--t-colour-base-high-contrast);
+  --t-colour-visited-link: oklch(from var(--t-colour-link) l c calc(h + var(--t-hue-offset-visited-link)));
 }

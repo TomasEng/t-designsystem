@@ -1,17 +1,14 @@
 import * as matchers from "@testing-library/jest-dom/matchers";
 import { html } from "lit";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import "../../properties.css";
 import { render } from "vitest-browser-lit";
+import "./t-button.css";
 
 expect.extend(matchers);
 
 describe("t-button", () => {
-  beforeEach(() => {
-    document.body.innerHTML = "";
-  });
-
   it("Renders a button with the given name", async () => {
     const name = "Lorem ipsum";
     const { getByRole } = render(html`<button class="t-button">${name}</button>`);

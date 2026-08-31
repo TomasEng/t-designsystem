@@ -10,6 +10,12 @@ export const componentSpec: Component[] = [
     },
   },
   {
+    type: "class",
+    htmlElement: "a",
+    className: "t-link",
+    variantClasses: {},
+  },
+  {
     type: "web",
     name: "t-textfield",
     attributes: {
