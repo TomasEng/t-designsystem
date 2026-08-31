@@ -57,3 +57,17 @@ jobs:
           path: |
             packages/web/coverage/
             packages/react/coverage/
+
+      - name: Testdekning Web
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: Web
+          json-summary-path: ./packages/web/coverage/coverage-summary.json
+          json-final-path: ./packages/web/coverage/coverage-final.json
+
+      - name: Testdekning React
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: React
+          json-summary-path: ./packages/react/coverage/coverage-summary.json
+          json-final-path: ./packages/react/coverage/coverage-final.json
