@@ -39,6 +39,21 @@ describe("t-textfield", () => {
     expect(onTInput).toHaveBeenCalledTimes(text.length);
     expect(onTInput).toHaveBeenLastCalledWith(expect.any(CustomEvent));
   });
+
+  it("Calls the t-change event when the user commits a change", async () => {
+    const onTChange = vi.fn();
+    const view = renderTextfield();
+    const text = "test";
+
+    await view.waitForInputElementToBeVisible();
+    view.getRootElement().addEventListener("t-change", onTChange);
+    await view.type(text);
+    await view.user.tab();
+
+    await expect.element(view.getInputField()).toHaveValue(text);
+    expect(onTChange).toHaveBeenCalledTimes(1);
+    expect(onTChange).toHaveBeenLastCalledWith(expect.any(CustomEvent));
+  });
 });
 
 interface ExtendedRenderResult extends RenderResult {
