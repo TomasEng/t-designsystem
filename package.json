@@ -5,12 +5,12 @@
   "scripts": {
     "all-checks": "pnpm build && pnpm typecheck && pnpm test && pnpm lint && pnpm codestyle",
     "build": "pnpm -r build",
-    "build-docs": "pnpm --filter tomas-designsystem-docs build",
     "codestyle": "prettier --check .",
     "codestyle:fix": "prettier --write .",
+    "docs:build": "pnpm --filter tomas-designsystem-docs build",
+    "docs:start": "pnpm --filter tomas-designsystem-docs start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "start-docs": "pnpm --filter tomas-designsystem-docs start",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck"
   },
