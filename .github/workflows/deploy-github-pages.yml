@@ -34,7 +34,7 @@ jobs:
       - name: Installere avhengigheter
         run: pnpm install
       - name: Bygge Storybook
-        run: pnpm run build-docs
+        run: pnpm run docs:build
       - name: Laste opp Pages-artifakt
         uses: actions/upload-pages-artifact@v3
         with:
