@@ -1,12 +1,13 @@
 import { format } from "prettier";
-import { componentSpec } from "../componentSpec.ts";
+import { componentSpec, subtypes } from "../componentSpec.ts";
 import { typeSpec } from "../typeSpec.ts";
 import { generateType } from "./generateType.ts";
 import type { Component, ElementWithClass, WebComponent } from "../Component.ts";
 import type { ConstantType, ObjectType, ReferenceType, Type, UnionType } from "../Type.ts";
 
 export async function generateTypesFileContent(): Promise<string> {
-  const code = generateWebComponentDefinitions() + "\n" + generateAttributeTypes() + "\n" + generateClassTypes();
+  const codes = [generateWebComponentDefinitions(), generateSubtypes(), generateAttributeTypes(), generateClassTypes()];
+  const code = codes.join("\n");
   return await format(code, {
     parser: "typescript",
     printWidth: 120,
@@ -54,6 +55,12 @@ function createAttributeType(c: WebComponent): ObjectType {
   const propertyEntries: Array<[string, Type]> = Object.entries(c.attributes).map(([name, { type }]) => [name, type]);
   const properties = Object.fromEntries(propertyEntries);
   return { kind: "object", properties, requiredProperties: [] };
+}
+
+function generateSubtypes(): string {
+  const names: (keyof typeof subtypes)[] = Object.keys(subtypes) as (keyof typeof subtypes)[];
+  const definitions = names.map((name) => generateDefinition(name, subtypes[name]));
+  return definitions.join("\n");
 }
 
 function generateClassTypes(): string {

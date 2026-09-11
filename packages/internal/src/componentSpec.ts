@@ -1,4 +1,5 @@
 import type { Component } from "./Component.js";
+import type { Type } from "./Type.ts";
 
 export const componentSpec: Component[] = [
   {
@@ -63,4 +64,49 @@ export const componentSpec: Component[] = [
       },
     },
   },
+  {
+    type: "web",
+    name: "t-code",
+    attributes: {
+      code: {
+        type: { kind: "string" },
+        default: "",
+      },
+      language: {
+        type: { kind: "string" },
+        default: "",
+      },
+      mode: {
+        type: { kind: "reference", name: "TCodeDisplayMode" },
+        default: "inline",
+      },
+      trimmargin: {
+        type: { kind: "boolean" },
+        default: false,
+      },
+      copyButtonTitle: {
+        type: { kind: "string" },
+        default: "Kopier kode",
+      },
+    },
+    events: {},
+  },
+  {
+    type: "web",
+    name: "t-panel",
+    attributes: {},
+    events: {},
+  },
 ];
+
+export const subtypes: Record<string, Type> = {
+  TCodeDisplayMode: {
+    kind: "union",
+    types: [
+      { kind: "constant", value: "inline" },
+      { kind: "constant", value: "block" },
+      { kind: "constant", value: "panel" },
+      { kind: "constant", value: "heading-panel" },
+    ],
+  },
+};

@@ -40,4 +40,9 @@ describe("generateTypesFileContent", () => {
     expect(code).toContain("export type TButtonClasses =");
     expect(code).toContain("export type TButtonVariant =");
   });
+
+  it("Includes component subtypes", async () => {
+    const code = await generateTypesFileContent();
+    expect(code).toContain("export type TCodeDisplayMode =");
+  });
 });

@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@open-wc/lit-helpers": "0.7.0",
+    "highlight.js": "11.12.0",
     "lit": "3.3.3"
   },
   "devDependencies": {

@@ -40,10 +40,28 @@
   initial-value: oklch(0.92 0.08 263deg);
 }
 
+@property --t-colour-grey-high-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0.46 0 0deg);
+}
+
+@property --t-colour-grey-low-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0.92 0 0deg);
+}
+
 @property --t-colour-full-contrast {
   syntax: "<color>";
   inherits: true;
   initial-value: black;
+}
+
+@property --t-colour-app-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: white;
 }
 
 @property --t-colour-page-background {
@@ -56,6 +74,24 @@
   syntax: "<color>";
   inherits: true;
   initial-value: black;
+}
+
+@property --t-colour-app-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: white;
+}
+
+@property --t-colour-panel-background {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: white;
+}
+
+@property --t-colour-panel-heading {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: white;
 }
 
 @property --t-size-clickable-area {
@@ -124,6 +160,12 @@
   initial-value: Roboto, Verdana, Arial, Helvetica, sans-serif;
 }
 
+@property --t-size-border-radius-default {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 6px;
+}
+
 @property --t-transition-duration-long {
   syntax: "<time>";
   inherits: true;
@@ -146,6 +188,12 @@
   syntax: "<angle>";
   inherits: true;
   initial-value: 30deg;
+}
+
+@property --t-hue-offset-code {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 180deg;
 }
 
 :root {
@@ -187,6 +235,14 @@
   --t-lightness-base-low-contrast: calc((var(--t-lightness-base-low-contrast-light) + var(--t-lightness-base-low-contrast-dark) + (var(--t-lightness-base-low-contrast-light) - var(--t-lightness-base-low-contrast-dark)) * var(--t-mode-colour-scaling)) / 2);
   --t-colour-base-low-contrast: oklch(from var(--t-colour-base) var(--t-lightness-base-low-contrast) c h);
 
+  --t-colour-grey-high-contrast: oklch(var(--t-lightness-base-high-contrast) 0 0deg);
+  --t-colour-grey-low-contrast: oklch(var(--t-lightness-base-low-contrast) 0 0deg);
+
+  --t-chroma-app-background: 0.05;
+  --t-hue-app-background: var(--t-base-hue);
+  --t-lightness-app-background: calc(0.6 + var(--t-mode-colour-scaling) * 0.4);
+  --t-colour-app-background: oklch(var(--t-lightness-app-background) var(--t-chroma-app-background) var(--t-lightness-app-background));
+
   --t-colour-page-background-lightness-light: 0.99;
   --t-colour-page-background-lightness-dark: 0.21;
   --t-colour-page-background-lightness: calc((var(--t-colour-page-background-lightness-light) + var(--t-colour-page-background-lightness-dark) + (var(--t-colour-page-background-lightness-light) - var(--t-colour-page-background-lightness-dark)) * var(--t-mode-colour-scaling)) / 2);
@@ -196,5 +252,18 @@
   --t-colour-font: var(--t-colour-full-contrast);
   --t-colour-input-field-background: color-mix(in oklab, var(--t-colour-full-contrast) 5%, transparent);
   --t-colour-link: var(--t-colour-base-high-contrast);
+  --t-colour-panel-heading: oklch(from var(--t-colour-base) l calc(c*0.5) h);
   --t-colour-visited-link: oklch(from var(--t-colour-link) l c calc(h + var(--t-hue-offset-visited-link)));
+
+  --t-image-app-background-top-layer: radial-gradient(oklch(from var(--t-colour-app-background) l 0 h), transparent 50%);
+  --t-image-app-background-bottom-layer: conic-gradient(in oklch longer hue, var(--t-colour-app-background) 0deg, oklch(from var(--t-colour-app-background) l c calc(h + 360)) 360deg);
+  --t-image-app-background: var(--t-image-app-background-top-layer), var(--t-image-app-background-bottom-layer);
+
+  --t-colour-panel-background-filter: color-mix(in oklab, var(--t-colour-grey-low-contrast) 50%, transparent);
+  --t-image-panel-background-filter: linear-gradient(var(--t-colour-panel-background-filter), var(--t-colour-panel-background-filter)); /* The only way to make an image with one colour */
+  --t-image-panel-background: var(--t-image-panel-background-filter), var(--t-image-app-background);
+
+  --t-background-size-app: 100vw 100vh;
+
+  font-family: var(--t-font-family);
 }
