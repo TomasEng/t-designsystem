@@ -9,6 +9,7 @@
     "codestyle:fix": "prettier --write .",
     "docs:build": "pnpm --filter tomas-designsystem-docs build",
     "docs:start": "pnpm --filter tomas-designsystem-docs start",
+    "generate-types": "pnpm --filter internal generate-types",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "pnpm -r test",

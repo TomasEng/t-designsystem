@@ -1,9 +1,10 @@
 import { LitElement, type TemplateResult, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import "../t-field/index.ts";
+import { property } from "lit/decorators.js";
 import { Assert } from "../../utils/Assert.ts";
+import { customElement } from "../../utils/customElement.ts";
 import type { EventName } from "../../types/EventName.ts";
 import type { TKeyboardEvent, TInputEvent, TFocusEvent, TTextfieldAttributes } from "../../types/element-types.ts";
+import "../t-field/index.ts";
 
 export type TTextfieldEventName = EventName<keyof TTextfieldEvent>;
 export type TTextfieldEvent = {

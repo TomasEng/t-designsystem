@@ -2,10 +2,10 @@ import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
-import { TButton, TLink, TTextField } from "./index.js";
+import { TButton, TCode, TLink, TPanel, TTextField } from "./index.js";
 import type { TInputEvent, TTextfield as TTextfieldElement } from "tomas-designsystem";
 import type { RenderResult } from "vitest-browser-react";
-import type { TButtonProps, TLinkProps, TTextFieldProps } from "./index.js";
+import type { TCodeProps, TButtonProps, TLinkProps, TTextFieldProps, TPanelProps } from "./index.js";
 
 describe("package", () => {
   describe("TButton", () => {
@@ -20,6 +20,37 @@ describe("package", () => {
     }
   });
 
+  describe("TCode", () => {
+    it("Renders a code element when the code is passed as a child", async () => {
+      const code = "Test";
+      const screen = await renderCode({ children: code });
+      expect(screen.getByRole("code")).toHaveTextContent(code);
+    });
+
+    it("Renders a code element when the code is passed as an attribute", async () => {
+      const code = "Test";
+      const screen = await renderCode({ code });
+      expect(screen.getByRole("code")).toHaveTextContent(code);
+    });
+
+    it("Adds the code to the clipboard when the user clicks the copy button", async () => {
+      const user = userEvent.setup();
+      const copyMock = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal("navigator", { clipboard: { writeText: copyMock } });
+      const code = "Test";
+      const copyButtonTitle = "Copy";
+      const screen = await renderCode({ code, mode: "heading-panel", copyButtonTitle });
+
+      await user.click(screen.getByRole("button", { name: copyButtonTitle }));
+
+      expect(copyMock).toHaveBeenCalledWith(expect.stringContaining(code));
+    });
+
+    function renderCode(props: Partial<TCodeProps> = {}): Promise<RenderResult> {
+      return render(<TCode {...props} />);
+    }
+  });
+
   describe("TLink", () => {
     it("Renders a link with the given name", async () => {
       const name = "Test";
@@ -29,6 +60,27 @@ describe("package", () => {
 
     function renderLink(props: Partial<TLinkProps> = {}): Promise<RenderResult> {
       return render(<TLink {...props} />);
+    }
+  });
+
+  describe("TPanel", () => {
+    it("Renders a panel with the given text and heading", async () => {
+      const heading = "Heading";
+      const text = "Test";
+      const screen = await renderPanel({
+        children: (
+          <>
+            <h1>{heading}</h1>
+            {text}
+          </>
+        ),
+      });
+      expect(screen.getByRole("heading", { name: heading })).toBeVisible();
+      expect(screen.getByText(text)).toBeVisible();
+    });
+
+    function renderPanel(props: Partial<TPanelProps> = {}): Promise<RenderResult> {
+      return render(<TPanel {...props} />);
     }
   });
 
