@@ -3,7 +3,6 @@ import { LitElement, html, type PropertyValues, css, unsafeCSS, type TemplateRes
 import { property, state } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { ACTION_CONFIRMATION_PERIOD_MILLISECONDS } from "../../constants.js";
-import { Assert } from "../../utils/Assert.ts";
 import { customElement } from "../../utils/customElement.ts";
 import { capitalize, trimLineBreaks, trimMargin } from "../../utils/stringUtils.js";
 import { checkmarkIcon } from "../icons/checkmarkIcon.ts";
@@ -22,12 +21,6 @@ export class TCode extends LitElement implements Readonly<TCodeAttributes> {
 
   @state() private copied = false;
 
-  get codeElement(): HTMLElement {
-    const e = this.shadowRoot?.querySelector("code");
-    Assert.notNullNorUndefined(e);
-    return e;
-  }
-
   updated(changedProperties: PropertyValues): void {
     super.updated(changedProperties);
     if (this.copied) {
@@ -37,7 +30,9 @@ export class TCode extends LitElement implements Readonly<TCodeAttributes> {
 
   render(): TemplateResult<1> {
     const trimmedCode = this.trimCode();
-    const code = this.language ? highlight.highlight(trimmedCode, { language: this.language }).value : trimmedCode;
+    const code = this.isLanguageSupported()
+      ? highlight.highlight(trimmedCode, { language: this.language }).value
+      : trimmedCode;
     const pre = html`<pre class=${this.mode}><code>${unsafeHTML(code)}</code></pre>`;
     switch (this.mode) {
       case "panel":
@@ -62,6 +57,10 @@ export class TCode extends LitElement implements Readonly<TCodeAttributes> {
       default:
         return pre;
     }
+  }
+
+  private isLanguageSupported(): boolean {
+    return Object.keys(humanReadableLanguages).includes(this.language);
   }
 
   private renderCopyIcon(): TemplateResult<1> {
