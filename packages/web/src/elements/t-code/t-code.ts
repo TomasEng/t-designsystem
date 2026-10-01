@@ -72,7 +72,7 @@ export class TCode extends LitElement implements Readonly<TCodeAttributes> {
     return this.trimmargin ? trimMargin(code) : trimLineBreaks(code);
   }
 
-  private copyToClipboard(): Promise<void> {
+  private async copyToClipboard(): Promise<void> {
     return navigator.clipboard.writeText(this.trimCode()).then(() => {
       this.copied = true;
     });
