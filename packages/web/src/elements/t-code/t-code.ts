@@ -64,7 +64,7 @@ export class TCode extends LitElement implements Readonly<TCodeAttributes> {
   }
 
   private renderCopyIcon(): TemplateResult<1> {
-    return this.copied ? checkmarkIcon("icon") : filesIcon(false, "icon");
+    return this.copied ? checkmarkIcon("icon") : filesIcon("icon");
   }
 
   private trimCode(): string {

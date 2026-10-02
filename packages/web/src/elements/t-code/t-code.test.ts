@@ -85,4 +85,10 @@ describe("t-code", () => {
       vi.useRealTimers();
     }
   });
+
+  it("Trims the margin when trimmargin is set", async () => {
+    const view = render(html`<t-code trimmargin> |test</t-code>`);
+    await expect.element(view.getByRole("code")).toHaveTextContent("test");
+    await expect.element(view.getByRole("code")).not.toHaveTextContent("|");
+  });
 });
