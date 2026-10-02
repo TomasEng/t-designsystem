@@ -1,5 +1,6 @@
 import { LitElement, type TemplateResult, css, html } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
+import { customElement } from "../../utils/customElement.ts";
 
 export type FieldDirection = "column" | "row";
 
