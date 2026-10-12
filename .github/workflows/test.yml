@@ -72,3 +72,43 @@ jobs:
           name: React
           json-summary-path: ./packages/react/coverage/coverage-summary.json
           json-final-path: ./packages/react/coverage/coverage-final.json
+
+      - name: Hente testdekningsdata
+        if: ${{ github.ref == 'refs/heads/master' }}
+        id: testdekning
+        shell: bash
+        run: |
+          {
+            echo 'coverageSummaryWeb<<EOF'
+            cat ./packages/web/coverage/coverage-summary.json
+            echo
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+          {
+            echo 'coverageSummaryReact<<EOF'
+            cat ./packages/react/coverage/coverage-summary.json
+            echo
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Oppdatere testdekningsetikett for Web
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: schneegans/dynamic-badges-action@v1.9.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 77fc5f17b0b68c757f10ed957a0f41a9
+          filename: testdekningweb.svg
+          label: Testdekning Web
+          message: "${{fromJson(steps.testdekning.outputs.coverageSummaryWeb).total.lines.covered}}/${{fromJson(steps.testdekning.outputs.coverageSummaryWeb).total.lines.total}} linjer"
+          color: green
+
+      - name: Oppdatere testdekningsetikett for React
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: schneegans/dynamic-badges-action@v1.9.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 77fc5f17b0b68c757f10ed957a0f41a9
+          filename: testdekningreact.svg
+          label: Testdekning React
+          message: "${{fromJson(steps.testdekning.outputs.coverageSummaryReact).total.lines.covered}}/${{fromJson(steps.testdekning.outputs.coverageSummaryReact).total.lines.total}} linjer"
+          color: green
