@@ -14,6 +14,10 @@ export default defineConfig({
       provider: playwright({}),
       instances: [{ browser: "chromium" }],
     },
+    reporters: ["default", "json"],
+    outputFile: {
+      json: "./test-results.json",
+    },
   },
   plugins: [storybookTest({ configDir: path.join(dirname, ".storybook") })],
 });

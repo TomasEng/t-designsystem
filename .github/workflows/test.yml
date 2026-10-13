@@ -48,7 +48,38 @@ jobs:
         run: pnpm --filter tomas-designsystem --filter tomas-designsystem-react exec playwright install --with-deps
 
       - name: Test
-        run: pnpm run test
+        id: tester
+        shell: bash
+        run: |
+          pnpm run test
+
+          node <<'NODE'
+          const fs = require("node:fs");
+          const web = require("./packages/web/test-results.json");
+          const react = require("./packages/react/test-results.json");
+          const docs = require("./packages/docs/test-results.json");
+          const passed = web.numPassedTests + react.numPassedTests + docs.numPassedTests;
+          const total = web.numTotalTests + react.numTotalTests + docs.numTotalTests;
+          fs.appendFileSync(
+            process.env.GITHUB_ENV,
+            `TESTS_PASSED=${passed}\nTESTS_EXECUTED=${total}\n`,
+          );
+          fs.appendFileSync(
+            process.env.GITHUB_OUTPUT,
+            `testsMessage=${passed}/${total} bestått\n`,
+          );
+          NODE
+
+      - name: Oppdatere testetikett
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: schneegans/dynamic-badges-action@v1.9.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 77fc5f17b0b68c757f10ed957a0f41a9
+          filename: tester.svg
+          label: Tester
+          message: ${{ steps.tester.outputs.testsMessage }}
+          color: green
 
       - name: Laste opp testdekningsinformasjon
         uses: actions/upload-artifact@v4
