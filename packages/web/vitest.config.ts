@@ -9,6 +9,10 @@ export default defineConfig({
       provider: playwright({}),
       instances: [{ browser: "chromium" }],
     },
+    reporters: ["default", "json"],
+    outputFile: {
+      json: "./test-results.json",
+    },
     coverage: {
       enabled: true,
       include: ["src/**/*.ts"],
