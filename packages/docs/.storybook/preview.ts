@@ -17,6 +17,7 @@ const preview: Preview = {
         excludeDecorators: true,
       },
     },
+    a11y: { test: "error" },
   },
   decorators: styler,
   loaders: [
