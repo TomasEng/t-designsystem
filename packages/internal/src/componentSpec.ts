@@ -97,6 +97,27 @@ export const componentSpec: Component[] = [
     attributes: {},
     events: {},
   },
+  {
+    type: "web",
+    name: "t-tabs",
+    attributes: {},
+    events: {},
+  },
+  {
+    type: "web",
+    name: "t-tab",
+    attributes: {
+      heading: {
+        type: { kind: "string" },
+        default: "",
+      },
+      name: {
+        type: { kind: "string" },
+        default: "",
+      },
+    },
+    events: {},
+  },
 ];
 
 export const subtypes: Record<string, Type> = {

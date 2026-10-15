@@ -12,4 +12,7 @@ export type { TTextfieldEvent, TTextfieldEventName } from "./elements/t-textfiel
 
 export { TPanel } from "./elements/t-panel/t-panel.ts";
 
+export { TTab } from "./elements/t-tab/t-tab.ts";
+export { TTabs } from "./elements/t-tabs/t-tabs.ts";
+
 export * from "./types/element-types.ts";

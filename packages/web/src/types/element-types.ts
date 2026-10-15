@@ -11,6 +11,8 @@ export type TCodeAttributes = {
   copyButtonTitle?: string;
 };
 export type TPanelAttributes = {};
+export type TTabsAttributes = {};
+export type TTabAttributes = { heading?: string; name?: string };
 export type TButtonClasses = { variant?: TButtonVariant };
 export type TButtonVariant = "default" | "transparent" | "link" | "without-background";
 export type TLinkClasses = {};
