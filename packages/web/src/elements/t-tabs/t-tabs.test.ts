@@ -108,9 +108,9 @@ type ExtendedRenderResult = RenderResult & {
   getNthTab(n: number): Locator;
   getTabPanel(): Locator;
   expectFocusedTab(index: number): Promise<void>;
-  expectTabToBeSelected(index: number): Promise<HTMLElement | SVGElement | null>;
-  expectTabNotToBeSelected(index: number): Promise<HTMLElement | SVGElement | null>;
-  expectTabToHaveContent(index: number, text: string): Promise<HTMLElement | SVGElement | null>;
+  expectTabToBeSelected(index: number): Promise<HTMLElement | SVGElement | null | void>;
+  expectTabNotToBeSelected(index: number): Promise<HTMLElement | SVGElement | null | void>;
+  expectTabToHaveContent(index: number, text: string): Promise<HTMLElement | SVGElement | null | void>;
 };
 
 function renderTabs(html: TemplateResult<1> = tabsHtml): ExtendedRenderResult {
@@ -139,13 +139,13 @@ function renderTabs(html: TemplateResult<1> = tabsHtml): ExtendedRenderResult {
     async expectFocusedTab(index: number): Promise<void> {
       return expect.element(this.getActiveElement()).toBe(this.getNthTab(index).element());
     },
-    async expectTabToBeSelected(index: number): Promise<HTMLElement | SVGElement | null> {
+    async expectTabToBeSelected(index: number): Promise<HTMLElement | SVGElement | null | void> {
       return expect.element(this.getNthTab(index)).toHaveAttribute("aria-selected", "true");
     },
-    async expectTabNotToBeSelected(index: number): Promise<HTMLElement | SVGElement | null> {
+    async expectTabNotToBeSelected(index: number): Promise<HTMLElement | SVGElement | null | void> {
       return expect.element(this.getNthTab(index)).toHaveAttribute("aria-selected", "false");
     },
-    async expectTabToHaveContent(index: number, text: string): Promise<HTMLElement | SVGElement | null> {
+    async expectTabToHaveContent(index: number, text: string): Promise<HTMLElement | SVGElement | null | void> {
       return expect.element(this.getNthTab(index)).toHaveTextContent(text);
     },
   };
