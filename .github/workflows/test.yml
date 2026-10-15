@@ -64,7 +64,7 @@ jobs:
           console.log(`testsPassed=${passed}`);
           console.log(`testsTotal=${total}`);
           console.log(`testsWarningLimit=${warningLimit}`);
-          console.log(`testsMessage=${passed}/${total} bestått`);
+          console.log(`testsMessage=${passed}/${total}`);
           NODE
 
       - name: Oppdatere testetikett
@@ -124,11 +124,19 @@ jobs:
           node <<'NODE' >> "$GITHUB_OUTPUT"
           const web = require("./packages/web/coverage/coverage-summary.json");
           const react = require("./packages/react/coverage/coverage-summary.json");
-          const covered = web.total.lines.covered + react.total.lines.covered;
-          const total = web.total.lines.total + react.total.lines.total;
-          console.log(`linesCovered=${covered}`);
-          console.log(`linesTotal=${total}`);
-          console.log(`coverageMessage=${covered}/${total} linjer`);
+          const coveredLines = web.total.lines.covered + react.total.lines.covered;
+          const totalLines = web.total.lines.total + react.total.lines.total;
+          const coveredStatements = web.total.statements.covered + react.total.statements.covered;
+          const totalStatements = web.total.statements.total + react.total.statements.total;
+          const coveredFunctions = web.total.functions.covered + react.total.functions.covered;
+          const totalFunctions = web.total.functions.total + react.total.functions.total;
+          const coveredBranches = web.total.branches.covered + react.total.branches.covered;
+          const totalBranches = web.total.branches.total + react.total.branches.total;
+          const coveredThings = coveredLines + coveredStatements + coveredFunctions + coveredBranches;
+          const totalThings = totalLines + totalStatements + totalFunctions + totalBranches;
+          console.log(`thingsCovered=${coveredThings}`);
+          console.log(`thingsTotal=${totalThings}`);
+          console.log(`coverageMessage=${coveredThings}/${totalThings}`);
           NODE
 
       - name: Oppdatere testdekningsetikett
@@ -140,6 +148,6 @@ jobs:
           filename: testdekning.svg
           label: Testdekning
           message: "${{ steps.testdekning.outputs.coverageMessage }}"
-          valColorRange: ${{ steps.testdekning.outputs.linesCovered }}
-          maxColorRange: ${{ steps.testdekning.outputs.linesTotal }}
+          valColorRange: ${{ steps.testdekning.outputs.thingsCovered }}
+          maxColorRange: ${{ steps.testdekning.outputs.thingsTotal }}
           minColorRange: 0
