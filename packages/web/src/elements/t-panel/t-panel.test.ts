@@ -19,7 +19,7 @@ describe("t-panel", () => {
     const heading = "Heading";
     const text = "Lorem ipsum";
     const renderResult = render(html`<t-panel><span slot="heading">${heading}</span>${text}</t-panel>`);
-    expect(renderResult.container).toHaveTextContent(heading);
-    expect(renderResult.container).toHaveTextContent(text);
+    expect(renderResult.container).toMatchTextContent(heading);
+    expect(renderResult.container).toMatchTextContent(text);
   });
 });
