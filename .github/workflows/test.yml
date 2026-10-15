@@ -53,21 +53,18 @@ jobs:
         run: |
           pnpm run test
 
-          node <<'NODE'
+          node <<'NODE' >> "$GITHUB_OUTPUT"
           const fs = require("node:fs");
           const web = require("./packages/web/test-results.json");
           const react = require("./packages/react/test-results.json");
           const docs = require("./packages/docs/test-results.json");
           const passed = web.numPassedTests + react.numPassedTests + docs.numPassedTests;
           const total = web.numTotalTests + react.numTotalTests + docs.numTotalTests;
-          fs.appendFileSync(
-            process.env.GITHUB_ENV,
-            `TESTS_PASSED=${passed}\nTESTS_EXECUTED=${total}\n`,
-          );
-          fs.appendFileSync(
-            process.env.GITHUB_OUTPUT,
-            `testsMessage=${passed}/${total} bestått\n`,
-          );
+          const warningLimit = total - 1;
+          console.log(`testsPassed=${passed}`);
+          console.log(`testsTotal=${total}`);
+          console.log(`testsWarningLimit=${warningLimit}`);
+          console.log(`testsMessage=${passed}/${total} bestått`);
           NODE
 
       - name: Oppdatere testetikett
@@ -79,7 +76,9 @@ jobs:
           filename: tester.svg
           label: Tester
           message: ${{ steps.tester.outputs.testsMessage }}
-          color: green
+          valColorRange: ${{ steps.tester.outputs.testsPassed }}
+          maxColorRange: ${{ steps.tester.outputs.testsTotal }}
+          minColorRange: ${{ steps.tester.outputs.testsWarningLimit }}
 
       - name: Laste opp testdekningsinformasjon
         uses: actions/upload-artifact@v4
@@ -127,6 +126,8 @@ jobs:
           const react = require("./packages/react/coverage/coverage-summary.json");
           const covered = web.total.lines.covered + react.total.lines.covered;
           const total = web.total.lines.total + react.total.lines.total;
+          console.log(`linesCovered=${covered}`);
+          console.log(`linesTotal=${total}`);
           console.log(`coverageMessage=${covered}/${total} linjer`);
           NODE
 
@@ -139,4 +140,6 @@ jobs:
           filename: testdekning.svg
           label: Testdekning
           message: "${{ steps.testdekning.outputs.coverageMessage }}"
-          color: green
+          valColorRange: ${{ steps.testdekning.outputs.linesCovered }}
+          maxColorRange: ${{ steps.testdekning.outputs.linesTotal }}
+          minColorRange: 0
