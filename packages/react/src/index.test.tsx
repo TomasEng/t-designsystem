@@ -2,9 +2,10 @@ import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
-import { TButton, TCode, TLink, TPanel, TTextField } from "./index.js";
+import { TButton, TCode, TLink, TPanel, TTabs, TTab, TTextField } from "./index.js";
 import type { TInputEvent, TTextfield as TTextfieldElement } from "tomas-designsystem";
 import type { RenderResult } from "vitest-browser-react";
+import type { TTabsProps } from "./TTabs.js";
 import type { TCodeProps, TButtonProps, TLinkProps, TTextFieldProps, TPanelProps } from "./index.js";
 
 describe("package", () => {
@@ -106,6 +107,56 @@ describe("package", () => {
 
     function renderTextfield(props: Partial<TTextFieldProps>): Promise<RenderResult> {
       return render(<TTextField {...props} />);
+    }
+  });
+
+  describe("TTabs", () => {
+    const items = [
+      { heading: "First tab", content: "First content" },
+      { heading: "Second tab", content: "Second content" },
+      { heading: "Third tab", content: "Third content" },
+    ];
+
+    it("Renders the tabs", async () => {
+      const screen = await renderTabs();
+      expect(screen.getByRole("tablist")).toBeVisible();
+      expect(screen.getByRole("tab")).toHaveLength(items.length);
+      expect(screen.getByRole("tab").first()).toHaveTextContent(items[0].heading);
+      expect(screen.getByRole("tab").first()).not.toHaveTextContent(items[1].heading);
+      expect(screen.getByRole("tabpanel")).toBeVisible();
+    });
+
+    it("Renders with first tab selected by default", async () => {
+      const screen = await renderTabs();
+      expect(screen.getByRole("tabpanel")).toHaveTextContent(items[0].content);
+      expect(screen.getByRole("tabpanel")).not.toHaveTextContent(items[1].content);
+    });
+
+    it("Accepts click events", async () => {
+      const user = userEvent.setup();
+      const screen = await renderTabs();
+      await user.click(screen.getByRole("tab", { name: items[1].heading }));
+      expect(screen.getByRole("tabpanel")).toHaveTextContent(items[1].content);
+    });
+
+    it("Accepts keyboard events", async () => {
+      const user = userEvent.setup();
+      const screen = await renderTabs();
+      await user.click(screen.getByRole("tab", { name: items[0].heading }));
+      await user.keyboard("{ArrowRight}{Enter}");
+      expect(screen.getByRole("tabpanel")).toHaveTextContent(items[1].content);
+    });
+
+    function renderTabs(props: Omit<Partial<TTabsProps>, "children"> = {}): Promise<RenderResult> {
+      return render(
+        <TTabs {...props}>
+          {items.map(({ heading, content }) => (
+            <TTab heading={heading} key={heading}>
+              {content}
+            </TTab>
+          ))}
+        </TTabs>,
+      );
     }
   });
 });
