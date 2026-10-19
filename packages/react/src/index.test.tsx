@@ -72,7 +72,7 @@ describe("package", () => {
         children: (
           <>
             <h1>{heading}</h1>
-            {text}
+            <p>{text}</p>
           </>
         ),
       });
