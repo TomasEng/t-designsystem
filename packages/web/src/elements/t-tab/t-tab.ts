@@ -1,5 +1,6 @@
 import { css, LitElement, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
+import { customElement } from "../../utils/customElement.ts";
 import type { TTabAttributes } from "../../types/element-types.ts";
 
 @customElement("t-tab")
