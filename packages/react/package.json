@@ -5,11 +5,18 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tomas-designsystem.css": "./dist/tomas-designsystem.css"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc -project tsconfig.build.json",
+    "build": "tsc -project tsconfig.build.json && node scripts/copy-styles.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest",

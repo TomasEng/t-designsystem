@@ -50,9 +50,9 @@ importers:
       lit:
         specifier: 3.3.3
         version: 3.3.3
-      tomas-designsystem:
+      tomas-designsystem-react:
         specifier: workspace:^
-        version: link:../web
+        version: link:../react
     devDependencies:
       '@chromatic-com/storybook':
         specifier: 5.3.0
