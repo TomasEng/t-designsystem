@@ -1,5 +1,6 @@
 import { LitElement, html, css, type TemplateResult } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { state } from "lit/decorators.js";
+import { customElement } from "../../utils/customElement.ts";
 import type { TTabsAttributes } from "../../types/element-types.ts";
 import type { TTab } from "../t-tab/t-tab.ts";
 
