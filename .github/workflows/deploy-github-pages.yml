@@ -33,8 +33,8 @@ jobs:
           cache: "pnpm"
       - name: Installere avhengigheter
         run: pnpm install
-      - name: Bygge Storybook
-        run: pnpm run docs:build
+      - name: Bygge pakker og Storybook
+        run: pnpm run build
       - name: Laste opp Pages-artifakt
         uses: actions/upload-pages-artifact@v3
         with:
