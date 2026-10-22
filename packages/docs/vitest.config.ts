@@ -9,6 +9,13 @@ const dirname =
 
 export default defineConfig({
   test: {
+    onConsoleLog(log) {
+      if (
+        log.trim() ===
+        "Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information."
+      )
+        return false;
+    },
     projects: [
       {
         test: {

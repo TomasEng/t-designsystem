@@ -3,6 +3,13 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
+    onConsoleLog(log) {
+      if (
+        log.trim() ===
+        "Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information."
+      )
+        return false;
+    },
     browser: {
       enabled: true,
       headless: true,
