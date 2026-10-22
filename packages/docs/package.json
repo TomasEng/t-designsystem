@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "internal": "workspace:^",
     "lit": "3.3.3",
     "tomas-designsystem-react": "workspace:^"
   },
@@ -24,6 +25,7 @@
     "@testing-library/dom": "10.4.2",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/user-event": "14.6.8",
+    "@types/react": "19.3.0",
     "@vitest/browser": "5.0.5",
     "@vitest/browser-playwright": "5.0.5",
     "shadow-dom-testing-library": "1.14.1",

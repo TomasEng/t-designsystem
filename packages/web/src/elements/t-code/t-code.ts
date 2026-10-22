@@ -32,7 +32,7 @@ export class TCode extends LitElement implements Readonly<TCodeAttributes> {
     const trimmedCode = this.trimCode();
     const code = this.isLanguageSupported()
       ? highlight.highlight(trimmedCode, { language: this.language }).value
-      : trimmedCode;
+      : trimmedCode.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
     const pre = html`<pre class=${this.mode}><code>${unsafeHTML(code)}</code></pre>`;
     switch (this.mode) {
       case "panel":
