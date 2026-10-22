@@ -8,16 +8,30 @@ const dirname = typeof __dirname !== "undefined" ? __dirname : path.dirname(file
 
 export default defineConfig({
   test: {
-    browser: {
-      enabled: true,
-      headless: true,
-      provider: playwright({}),
-      instances: [{ browser: "chromium" }],
-    },
+    projects: [
+      {
+        test: {
+          name: "unit",
+          environment: "node",
+          include: ["src/**/*.test.ts"],
+        },
+      },
+      {
+        plugins: [storybookTest({ configDir: path.join(dirname, ".storybook") })],
+        test: {
+          name: "storybook",
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: playwright({}),
+            instances: [{ browser: "chromium" }],
+          },
+        },
+      },
+    ],
     reporters: ["default", "json"],
     outputFile: {
       json: "./test-results.json",
     },
   },
-  plugins: [storybookTest({ configDir: path.join(dirname, ".storybook") })],
 });

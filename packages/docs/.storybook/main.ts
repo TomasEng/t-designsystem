@@ -1,3 +1,5 @@
+import { fileURLToPath } from "node:url";
+import { mergeConfig } from "vite";
 import type { StorybookConfig } from "@storybook/web-components-vite";
 
 const config: StorybookConfig = {
@@ -19,7 +21,16 @@ const config: StorybookConfig = {
       },
     });
 
-    return config;
+    return mergeConfig(config, {
+      resolve: {
+        alias: [
+          {
+            find: /^tomas-designsystem$/,
+            replacement: fileURLToPath(new URL("../../web/src/index.ts", import.meta.url)),
+          },
+        ],
+      },
+    });
   },
 };
 export default config;

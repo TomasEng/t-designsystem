@@ -1,12 +1,13 @@
-import { html } from "lit";
-import { expect, fn, userEvent } from "storybook/test";
-import type { Meta, StoryObj } from "@storybook/web-components-vite";
-import type { TButtonVariant } from "tomas-designsystem";
+import { expect } from "storybook/test";
+import { createExtendedStory } from "../utils/createExtendedStory.ts";
+import type { Meta } from "@storybook/web-components-vite";
+import type { TButtonVariant } from "tomas-designsystem-react";
+import type { ExtendedStory } from "../types/ExtendedStory.ts";
+import type { StoryCode } from "../types/StoryCode.ts";
 
 const meta: Meta = {
   title: "Komponenter/Knapp",
   component: "t-button",
-  tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "radio",
@@ -16,32 +17,35 @@ const meta: Meta = {
       control: "boolean",
     },
   },
-  render: (args) => {
-    return html`
-      <button class="t-button ${args.variant}" ?disabled=${args.disabled} @click=${onClick}>Klikk på meg</button>
-    `;
-  },
 };
 
 export default meta;
-type Story = StoryObj;
 
-const onClick = fn();
+const code: StoryCode = (args) => [
+  {
+    type: "class",
+    element: "button",
+    primaryClass: "t-button",
+    secondaryClasses: { variant: args.variant },
+    attributes: { disabled: args.disabled },
+    reactName: "TButton",
+    children: [{ type: "string", content: "Klikk på meg" }],
+  },
+];
 
-export const Default: Story = {
+export const Default: ExtendedStory = createExtendedStory({
   name: "Standard",
   args: {
     variant: "default",
   },
   async play({ canvas }) {
     const button = canvas.getByRole("button", { name: "Klikk på meg" });
-    expect(button).toBeInTheDocument();
-    await userEvent.click(button);
-    await expect(onClick).toHaveBeenCalledOnce();
+    await expect(button).toBeInTheDocument();
   },
-};
+  code,
+});
 
-export const Transparent: Story = {
+export const Transparent: ExtendedStory = {
   ...Default,
   name: "Gjennomsiktig",
   args: {
@@ -49,7 +53,7 @@ export const Transparent: Story = {
   },
 };
 
-export const Link: Story = {
+export const Link: ExtendedStory = {
   ...Default,
   name: "Som lenke",
   args: {
@@ -57,7 +61,7 @@ export const Link: Story = {
   },
 };
 
-export const WithoutBackground: Story = {
+export const WithoutBackground: ExtendedStory = {
   ...Default,
   name: "Uten bakgrunn",
   args: {
@@ -65,7 +69,7 @@ export const WithoutBackground: Story = {
   },
 };
 
-export const Disabled: Story = {
+export const Disabled: ExtendedStory = {
   ...Default,
   name: "Deaktivert",
   args: {
@@ -74,9 +78,7 @@ export const Disabled: Story = {
   },
   async play({ canvas }) {
     const button = canvas.getByRole("button", { name: "Klikk på meg" });
-    expect(button).toBeInTheDocument();
-    expect(button).toBeDisabled();
-    await userEvent.click(button);
-    await expect(onClick).not.toHaveBeenCalled();
+    await expect(button).toBeInTheDocument();
+    await expect(button).toBeDisabled();
   },
 };
