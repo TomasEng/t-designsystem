@@ -95,6 +95,7 @@ jobs:
           name: Web
           json-summary-path: ./packages/web/coverage/coverage-summary.json
           json-final-path: ./packages/web/coverage/coverage-final.json
+          vite-config-path: ./packages/web/vitest.config.ts
 
       - name: Testdekning React
         uses: davelosert/vitest-coverage-report-action@v2
@@ -102,6 +103,7 @@ jobs:
           name: React
           json-summary-path: ./packages/react/coverage/coverage-summary.json
           json-final-path: ./packages/react/coverage/coverage-final.json
+          vite-config-path: ./packages/web/vitest.config.ts
 
       - name: Hente testdekningsdata
         if: ${{ github.ref == 'refs/heads/master' }}
