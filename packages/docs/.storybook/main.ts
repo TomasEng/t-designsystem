@@ -22,6 +22,7 @@ const config: StorybookConfig = {
     });
 
     return mergeConfig(config, {
+      build: { chunkSizeWarningLimit: 2500 },
       resolve: {
         alias: [
           {
