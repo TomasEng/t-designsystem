@@ -1,5 +1,5 @@
 import * as React from "react";
-import { extractExtendedStories } from "../utils/extractExtendedStories";
+import { StoriesUtils } from "../utils/StoriesUtils";
 import { TStory } from "./TStory";
 
 export type TStoriesProps = {
@@ -7,5 +7,5 @@ export type TStoriesProps = {
 };
 
 export function TStories({ of }: TStoriesProps): React.ReactNode {
-  return Object.entries(extractExtendedStories(of)).map(([key, story]) => <TStory key={key} of={story} />);
+  return Object.entries(StoriesUtils.extractExtendedStories(of)).map(([key, story]) => <TStory key={key} of={story} />);
 }
