@@ -18,52 +18,59 @@ const node: TNode = {
   children: [],
 };
 
-export const Default: ExtendedStory = createExtendedStory({
+export const Default: ExtendedStory = {
+  ...createExtendedStory({ code: () => [node] }),
   name: "Standard (på linje)",
-  code: () => [node],
-});
+};
 
-export const Block: ExtendedStory = createExtendedStory({
+export const Block: ExtendedStory = {
+  ...createExtendedStory({
+    code: () => [
+      {
+        ...node,
+        attributes: {
+          code: "|function test(): void {\n      |  console.log('test');\n      |}",
+          language: "typescript",
+          mode: "block",
+          trimmargin: true,
+        },
+      },
+    ],
+  }),
   name: "Blokk",
-  code: () => [
-    {
-      ...node,
-      attributes: {
-        code: "|function test(): void {\n      |  console.log('test');\n      |}",
-        language: "typescript",
-        mode: "block",
-        trimmargin: true,
-      },
-    },
-  ],
-});
+};
 
-export const Panel: ExtendedStory = createExtendedStory({
+export const Panel: ExtendedStory = {
+  ...createExtendedStory({
+    code: () => [
+      {
+        ...node,
+        attributes: {
+          code: "|function test(): void {\n      |  console.log('test');\n      |}",
+          language: "typescript",
+          mode: "panel",
+          trimmargin: true,
+        },
+      },
+    ],
+  }),
   name: "Panel",
-  code: () => [
-    {
-      ...node,
-      attributes: {
-        code: "|function test(): void {\n      |  console.log('test');\n      |}",
-        language: "typescript",
-        mode: "panel",
-        trimmargin: true,
-      },
-    },
-  ],
-});
+};
 
-export const HeadingPanel: ExtendedStory = createExtendedStory({
-  name: "Panel med overskrift",
-  code: () => [
-    {
-      ...node,
-      attributes: {
-        code: "|function test(): void {\n      |  console.log('test');\n      |}",
-        language: "typescript",
-        mode: "heading-panel",
-        trimmargin: true,
+export const HeadingPanel: ExtendedStory = {
+  ...createExtendedStory({
+    name: "Panel med overskrift",
+    code: () => [
+      {
+        ...node,
+        attributes: {
+          code: "|function test(): void {\n      |  console.log('test');\n      |}",
+          language: "typescript",
+          mode: "heading-panel",
+          trimmargin: true,
+        },
       },
-    },
-  ],
-});
+    ],
+  }),
+  name: "Panel med overskrift",
+};
