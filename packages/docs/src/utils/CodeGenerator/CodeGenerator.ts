@@ -52,11 +52,6 @@ export class CodeGenerator {
     const reactStructures = nodesToReactStructures(this.#nodes);
     return new HtmlOrJsxCodeGenerator(reactStructures).generateJsx();
   }
-
-  public generateLit(): string {
-    const htmlStructures = nodesToHtmlStructures(this.#nodes);
-    return new HtmlOrJsxCodeGenerator(htmlStructures).generateLitTemplate();
-  }
 }
 
 function nodesToHtmlStructures(nodes: TNode[]): HtmlOrJsxNodes {
