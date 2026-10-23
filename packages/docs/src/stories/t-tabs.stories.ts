@@ -1,24 +1,31 @@
-import { html } from "lit";
-import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { createExtendedStory } from "../utils/createExtendedStory.ts";
+import type { Meta } from "@storybook/web-components-vite";
+import type { ExtendedStory } from "../types/ExtendedStory.ts";
 
 const meta: Meta = {
   title: "Komponenter/Faner",
   component: "t-tabs",
-  tags: ["autodocs"],
-  render: () => {
-    return html`
-      <t-tabs>
-        <t-tab heading="Fane 1">Innhold 1</t-tab>
-        <t-tab heading="Fane 2">Innhold 2</t-tab>
-        <t-tab heading="Fane 3">Innhold 3</t-tab>
-      </t-tabs>
-    `;
-  },
 };
 
 export default meta;
-type Story = StoryObj;
 
-export const Default: Story = {
+export const Default: ExtendedStory = {
+  ...createExtendedStory({
+    code: () => [
+      {
+        type: "web",
+        tagName: "t-tabs",
+        attributes: {},
+        reactName: "TTabs",
+        children: [1, 2, 3].map((number) => ({
+          type: "web",
+          tagName: "t-tab",
+          attributes: { heading: `Fane ${number}` },
+          reactName: "TTab",
+          children: [{ type: "string", content: `Innhold ${number}` }],
+        })),
+      },
+    ],
+  }),
   name: "Eksempel",
 };

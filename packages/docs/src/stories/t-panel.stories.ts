@@ -1,53 +1,81 @@
-import { html } from "lit";
-import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { createExtendedStory } from "../utils/createExtendedStory.ts";
+import type { Meta } from "@storybook/web-components-vite";
+import type { ExtendedStory } from "../types/ExtendedStory.ts";
+import type { TNode } from "../utils/CodeGenerator/CodeGenerator.ts";
 
 const meta: Meta = {
   title: "Komponenter/Panel",
   component: "t-panel",
-  tags: ["autodocs"],
-  render: () => {
-    return html`<t-panel>Test</t-panel>`;
-  },
 };
 
 export default meta;
-type Story = StoryObj;
 
-export const Default: Story = {
+const node: TNode = {
+  type: "web",
+  tagName: "t-panel",
+  attributes: {},
+  reactName: "TPanel",
+  children: [{ type: "string", content: "Test" }],
+};
+
+const heading: (text: string) => TNode = (text) => ({
+  type: "native",
+  element: "span",
+  attributes: { slot: "heading" },
+  children: [{ type: "string", content: text }],
+});
+
+export const Default: ExtendedStory = {
+  ...createExtendedStory({ code: () => [node] }),
   name: "Standard",
 };
 
-export const WithHeading: Story = {
+export const WithHeading: ExtendedStory = {
+  ...createExtendedStory({
+    code: (args) => [
+      {
+        ...node,
+        children: [heading(args.heading), { type: "string", content: "Lorem ipsum dolor sit amet" }],
+      },
+    ],
+  }),
   name: "Med overskrift",
-  argTypes: {
-    heading: { control: "text" },
-  },
-  args: {
-    heading: "Info",
-  },
-  render: (args) => {
-    return html`
-      <t-panel>
-        <span slot="heading"> ${args.heading} </span>
-        Lorem ipsum dolor sit amet
-      </t-panel>
-    `;
-  },
+  argTypes: { heading: { control: "text" } },
+  args: { heading: "Info" },
 };
 
-export const WithHeadingAndIcon: Story = {
+export const WithHeadingAndIcon: ExtendedStory = {
+  ...createExtendedStory({
+    code: (args) => [
+      {
+        ...node,
+        children: [
+          {
+            type: "native",
+            element: "svg",
+            attributes: {
+              height: "1em",
+              slot: "icon",
+              viewBox: "0 0 24 24",
+              width: "1em",
+              xmlns: "http://www.w3.org/2000/svg",
+            },
+            children: [
+              {
+                type: "native",
+                element: "circle",
+                attributes: { cx: 12, cy: 12, fill: "currentColor", r: 12 },
+                children: [],
+              },
+            ],
+          },
+          heading(args.heading),
+          { type: "string", content: "Lorem ipsum dolor sit amet" },
+        ],
+      },
+    ],
+  }),
   name: "Med overskrift og ikon",
   argTypes: WithHeading.argTypes,
   args: WithHeading.args,
-  render: (args) => {
-    return html`
-      <t-panel>
-        <svg height="1em" slot="icon" viewbox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" fill="currentColor" r="12"></circle>
-        </svg>
-        <span slot="heading"> ${args.heading} </span>
-        Lorem ipsum dolor sit amet
-      </t-panel>
-    `;
-  },
 };
