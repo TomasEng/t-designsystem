@@ -33,11 +33,8 @@ const code: StoryCode = (args) => [
   },
 ];
 
-export const Default: ExtendedStory = createExtendedStory({
-  name: "Standard",
-  args: {
-    variant: "default",
-  },
+const defaultStory: ExtendedStory = createExtendedStory({
+  args: { variant: "default" },
   async play({ canvas }) {
     const button = canvas.getByRole("button", { name: "Klikk på meg" });
     await expect(button).toBeInTheDocument();
@@ -45,37 +42,34 @@ export const Default: ExtendedStory = createExtendedStory({
   code,
 });
 
+export const Default: ExtendedStory = {
+  ...defaultStory,
+  name: "Standard",
+  args: { variant: "default" },
+};
+
 export const Transparent: ExtendedStory = {
-  ...Default,
+  ...defaultStory,
   name: "Gjennomsiktig",
-  args: {
-    variant: "transparent",
-  },
+  args: { variant: "transparent" },
 };
 
 export const Link: ExtendedStory = {
-  ...Default,
+  ...defaultStory,
   name: "Som lenke",
-  args: {
-    variant: "link",
-  },
+  args: { variant: "link" },
 };
 
 export const WithoutBackground: ExtendedStory = {
-  ...Default,
+  ...defaultStory,
   name: "Uten bakgrunn",
-  args: {
-    variant: "without-background",
-  },
+  args: { variant: "without-background" },
 };
 
 export const Disabled: ExtendedStory = {
-  ...Default,
+  ...defaultStory,
   name: "Deaktivert",
-  args: {
-    ...Default.args,
-    disabled: true,
-  },
+  args: { ...Default.args, disabled: true },
   async play({ canvas }) {
     const button = canvas.getByRole("button", { name: "Klikk på meg" });
     await expect(button).toBeInTheDocument();

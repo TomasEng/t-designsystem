@@ -1,58 +1,64 @@
-import { html } from "lit";
+import { within } from "shadow-dom-testing-library";
 import { expect, fn, userEvent } from "storybook/test";
-import type { Meta, StoryObj } from "@storybook/web-components-vite";
+import { createExtendedStory } from "../utils/createExtendedStory.ts";
+import type { Meta } from "@storybook/web-components-vite";
+import type { ExtendedStory } from "../types/ExtendedStory.ts";
+import type { StoryCode } from "../types/StoryCode.ts";
 
 const meta: Meta = {
   title: "Komponenter/Tekstfelt",
   component: "t-textfield",
-  tags: ["autodocs"],
   argTypes: {
-    label: {
-      control: "text",
-    },
-    disabled: {
-      control: "boolean",
-    },
-    value: {
-      control: "text",
-    },
-  },
-  render: (args) => {
-    return html`
-      <t-textfield label=${args.label} value=${args.value} ?disabled=${args.disabled} @t-input=${onInput} />
-    `;
+    label: { control: "text" },
+    disabled: { control: "boolean" },
+    value: { control: "text" },
   },
 };
 
 export default meta;
-type Story = StoryObj;
 
-const onInput = fn();
+const code: StoryCode = (args) => [
+  {
+    type: "web",
+    tagName: "t-textfield",
+    attributes: { label: args.label, value: args.value, disabled: args.disabled },
+    reactName: "TTextfield",
+    children: [],
+  },
+];
 
-export const Default: Story = {
+const defaultStory: ExtendedStory = createExtendedStory({ code });
+
+export const Default: ExtendedStory = {
+  ...defaultStory,
   name: "Standard",
   args: {
     label: "Skriv noe her",
   },
-  async play({ canvas }) {
-    const field = (canvas as any).getByShadowRole("textbox", { name: "Skriv noe her" }); // eslint-disable-line @typescript-eslint/no-explicit-any
-    expect(field).toBeInTheDocument();
+  async play({ canvasElement }) {
+    const onInput = fn();
+    canvasElement.querySelector("t-textfield")?.addEventListener("t-input", onInput);
+    const field = within(canvasElement).getByShadowRole("textbox", { name: "Skriv noe her" });
+    await expect(field).toBeInTheDocument();
     const value = "Test";
     await userEvent.type(field, value);
     await expect(onInput).toHaveBeenCalledTimes(value.length);
   },
 };
 
-export const Disabled: Story = {
+export const Disabled: ExtendedStory = {
+  ...defaultStory,
   name: "Deaktivert",
   args: {
     ...Default.args,
     value: "Tekst som ikke kan endres",
     disabled: true,
   },
-  async play({ canvas }) {
-    const field = (canvas as any).getByShadowRole("textbox", { name: "Skriv noe her" }); // eslint-disable-line @typescript-eslint/no-explicit-any
-    expect(field).toBeDisabled();
+  async play({ canvasElement }) {
+    const onInput = fn();
+    canvasElement.querySelector("t-textfield")?.addEventListener("t-input", onInput);
+    const field = within(canvasElement).getByShadowRole("textbox", { name: "Skriv noe her" });
+    await expect(field).toBeDisabled();
     await userEvent.type(field, "a");
     await expect(onInput).not.toHaveBeenCalled();
   },
