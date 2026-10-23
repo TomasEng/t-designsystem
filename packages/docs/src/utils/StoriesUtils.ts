@@ -1,3 +1,5 @@
+import type { DocsContext, useOf } from "@storybook/addon-docs/blocks";
+import type * as React from "react";
 import type { ExtendedStory } from "../types/ExtendedStory.ts";
 import type { StoriesModule } from "../types/StoriesModule.ts";
 
@@ -14,6 +16,16 @@ export class StoriesUtils {
       Object.prototype.hasOwnProperty.call(e, "htmlCode") &&
       Object.prototype.hasOwnProperty.call(e, "reactCode")
     );
+  }
+
+  static extendedStoriesFromCsfFile(
+    context: React.ContextType<typeof DocsContext>,
+    file: ReturnType<typeof useOf<"meta">>["csfFile"],
+  ): ExtendedStory[] {
+    return context
+      .componentStoriesFromCSFFile(file)
+      .map((s) => s.moduleExport)
+      .filter(this.isExtendedStory);
   }
 
   static extractTitle(module: StoriesModule): string {
