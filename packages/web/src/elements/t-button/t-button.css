@@ -29,11 +29,11 @@
         align-self: center;
     }
 
-    &.transparent {
+    &.t-button--transparent {
         --button-colour: transparent;
     }
 
-    &.without-background {
+    &.t-button--without-background {
         background: none;
         box-shadow: none;
         color: var(--t-colour-base-high-contrast);
@@ -48,7 +48,7 @@
         }
     }
 
-    &.link {
+    &.t-button--link {
         background: none;
         border-radius: 0;
         box-shadow: none;
@@ -66,7 +66,7 @@
         --button-colour: color-mix(in oklab, var(--t-colour-base) 75%, white);
     }
 
-    &:not(:disabled):not(.link):active {
+    &:not(:disabled):not(.t-button--link):active {
         background: var(--button-colour);
         box-shadow: var(--box-shadow-outset);
         transform: scale(0.96);

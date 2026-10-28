@@ -16,7 +16,9 @@ describe("CodeGenerator", () => {
         },
       ]);
       const result = codeGenerator.generateHtml();
-      expect(result).toBe('<button\n    class="t-button default"\n    type="button"\n>\n    Click\n</button>');
+      expect(result).toBe(
+        '<button\n    class="t-button t-button--default"\n    type="button"\n>\n    Click\n</button>',
+      );
     });
 
     it("Works for a class component with additional classes", () => {
@@ -32,7 +34,9 @@ describe("CodeGenerator", () => {
         },
       ]);
       const result = codeGenerator.generateHtml();
-      expect(result).toBe('<button\n    class="t-button default test"\n    type="button"\n>\n    Click\n</button>');
+      expect(result).toBe(
+        '<button\n    class="t-button t-button--default test"\n    type="button"\n>\n    Click\n</button>',
+      );
     });
 
     it("Works for a web component", () => {

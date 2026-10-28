@@ -16,6 +16,11 @@ describe("package", () => {
       expect(screen.getByRole("button", { name })).toBeInTheDocument();
     });
 
+    it("Adds the variant class", async () => {
+      const screen = await renderButton({ children: "Test", variant: "link" });
+      expect(screen.getByRole("button")).toHaveClass("t-button--link");
+    });
+
     function renderButton(props: Partial<TButtonProps> = {}): Promise<RenderResult> {
       return render(<TButton {...props} />);
     }

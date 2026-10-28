@@ -105,10 +105,9 @@ function webNodeToReactStructure(node: TNodeWeb): HtmlOrJsxTag {
 }
 
 function classNodeToHtmlStructure(node: TNodeClass): HtmlOrJsxTag {
-  const secondaryClasses = Object.values(ObjectUtils.removeUndefined(node.secondaryClasses));
   const classes = [
     node.primaryClass,
-    ...secondaryClasses,
+    ...extractSecondaryClasses(node),
     ...(node.attributes.class ? [node.attributes.class] : []),
   ].join(" ");
   const additionalAttributes = ObjectUtils.removeProperty("class", node.attributes);
@@ -118,6 +117,10 @@ function classNodeToHtmlStructure(node: TNodeClass): HtmlOrJsxTag {
     attributes,
     children: node.children.map(nodeToHtmlStructure),
   };
+}
+
+function extractSecondaryClasses({ primaryClass, secondaryClasses }: TNodeClass): string[] {
+  return Object.values(ObjectUtils.removeUndefined(secondaryClasses)).map((c) => `${primaryClass}--${c}`);
 }
 
 function classNodeToReactStructure(node: TNodeClass): HtmlOrJsxTag {
