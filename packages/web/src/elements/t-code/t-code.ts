@@ -44,7 +44,7 @@ export class TCode extends LitElement implements Readonly<TCodeAttributes> {
             <span slot="heading" class="heading">
               ${this.language && findHumanReadableLanguage(this.language)}
               <button
-                class="t-button without-background"
+                class="t-button t-button--without-background"
                 title=${this.copyButtonTitle}
                 @click=${(): Promise<void> => this.copyToClipboard()}
               >
