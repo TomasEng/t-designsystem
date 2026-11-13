@@ -9,6 +9,15 @@ export type TStoriesProps = {
 };
 
 export function TStories({ of }: TStoriesProps): React.ReactNode {
+  return (
+    <>
+      <h2>Eksempler</h2>
+      <List of={of} />
+    </>
+  );
+}
+
+function List({ of }: TStoriesProps): React.ReactNode {
   const context = React.useContext(DocsContext);
   const { csfFile } = useOf(of, ["meta"]);
 

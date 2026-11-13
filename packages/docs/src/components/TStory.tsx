@@ -11,7 +11,7 @@ export type TStoryProps = {
 export function TStory({ of }: TStoryProps): React.ReactNode {
   return (
     <div className={styles.story}>
-      <h2>{of.name}</h2>
+      <h3>{of.name}</h3>
       <Story of={of} />
       <TStoryCode of={of} />
     </div>
