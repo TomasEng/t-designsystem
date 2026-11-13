@@ -2,9 +2,12 @@ import { Meta } from "@storybook/addon-docs/blocks";
 import * as TLinkStories from "./t-link.stories";
 import { TStories } from "../components/TStories.tsx";
 import { TStoriesTitle } from "../components/TStoriesTitle.tsx";
+import { TSpecs } from "../components/TSpecs/TSpecs.tsx";
 
 <Meta of={TLinkStories} />
 
 <TStoriesTitle of={TLinkStories} />
+
+<TSpecs name="t-link" />
 
 <TStories of={TLinkStories} />

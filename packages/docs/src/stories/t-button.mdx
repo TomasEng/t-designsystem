@@ -2,9 +2,12 @@ import { Meta } from "@storybook/addon-docs/blocks";
 import * as TButtonStories from "./t-button.stories";
 import { TStories } from "../components/TStories.tsx";
 import { TStoriesTitle } from "../components/TStoriesTitle.tsx";
+import { TSpecs } from "../components/TSpecs/TSpecs.tsx";
 
 <Meta of={TButtonStories} />
 
 <TStoriesTitle of={TButtonStories} />
+
+<TSpecs name="t-button" />
 
 <TStories of={TButtonStories} />
