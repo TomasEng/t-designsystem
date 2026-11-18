@@ -40,6 +40,12 @@
   initial-value: oklch(0.92 0.08 263deg);
 }
 
+@property --t-colour-grey {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(0.84 0 0deg);
+}
+
 @property --t-colour-grey-high-contrast {
   syntax: "<color>";
   inherits: true;
@@ -160,6 +166,12 @@
   initial-value: Roboto, Verdana, Arial, Helvetica, sans-serif;
 }
 
+@property --t-font-family-heading {
+  syntax: "<custom-ident>#";
+  inherits: true;
+  initial-value: Roboto, Verdana, Arial, Helvetica, sans-serif;
+}
+
 @property --t-size-border-radius-default {
   syntax: "<length>";
   inherits: true;
@@ -235,6 +247,11 @@
   --t-lightness-base-low-contrast: calc((var(--t-lightness-base-low-contrast-light) + var(--t-lightness-base-low-contrast-dark) + (var(--t-lightness-base-low-contrast-light) - var(--t-lightness-base-low-contrast-dark)) * var(--t-mode-colour-scaling)) / 2);
   --t-colour-base-low-contrast: oklch(from var(--t-colour-base) var(--t-lightness-base-low-contrast) c h);
 
+  --t-lightness-grey-light: 0.84;
+  --t-lightness-grey-dark: 0.84;
+  --t-lightness-grey: calc((var(--t-lightness-grey-light) + var(--t-lightness-grey-dark) + (var(--t-lightness-grey-light) - var(--t-lightness-grey-dark)) * var(--t-mode-colour-scaling)) / 2);
+  --t-colour-grey: oklch(var(--t-lightness-grey) 0 0deg);
+
   --t-colour-grey-high-contrast: oklch(var(--t-lightness-base-high-contrast) 0 0deg);
   --t-colour-grey-low-contrast: oklch(var(--t-lightness-base-low-contrast) 0 0deg);
 
@@ -264,6 +281,28 @@
   --t-image-panel-background: var(--t-image-panel-background-filter), var(--t-image-app-background);
 
   --t-background-size-app: 100vw 100vh;
+
+  --t-font-family-heading: var(--t-font-family);
+  --t-size-heading-1: 2em;
+  --t-size-heading-2: 2em;
+  --t-size-heading-3: 1.5em;
+  --t-size-heading-4: 1.3em;
+  --t-size-heading-5: 1em;
+  --t-size-heading-6: 1em;
+  --t-spacing-heading-bottom-1: calc(var(--t-size-heading-1) * var(--t-factor-heading-spacing-bottom) * 2);
+  --t-spacing-heading-bottom-2: calc(var(--t-size-heading-2) * var(--t-factor-heading-spacing-bottom));
+  --t-spacing-heading-bottom-3: calc(var(--t-size-heading-3) * var(--t-factor-heading-spacing-bottom));
+  --t-spacing-heading-bottom-4: calc(var(--t-size-heading-4) * var(--t-factor-heading-spacing-bottom));
+  --t-spacing-heading-bottom-5: calc(var(--t-size-heading-5) * var(--t-factor-heading-spacing-bottom));
+  --t-spacing-heading-bottom-6: calc(var(--t-size-heading-6) * var(--t-factor-heading-spacing-bottom));
+  --t-factor-heading-spacing-bottom: 0.67;
+  --t-spacing-heading-top-1: 0;
+  --t-spacing-heading-top-2: calc(var(--t-size-heading-2) * var(--t-factor-heading-spacing-top));
+  --t-spacing-heading-top-3: calc(var(--t-size-heading-3) * var(--t-factor-heading-spacing-top));
+  --t-spacing-heading-top-4: calc(var(--t-size-heading-4) * var(--t-factor-heading-spacing-top));
+  --t-spacing-heading-top-5: calc(var(--t-size-heading-5) * var(--t-factor-heading-spacing-top));
+  --t-spacing-heading-top-6: calc(var(--t-size-heading-6) * var(--t-factor-heading-spacing-top));
+  --t-factor-heading-spacing-top: 2;
 
   font-family: var(--t-font-family);
 }

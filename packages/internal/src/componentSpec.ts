@@ -93,6 +93,17 @@ export const componentSpec: Component[] = [
   },
   {
     type: "web",
+    name: "t-heading",
+    attributes: {
+      level: {
+        type: { kind: "reference", name: "THeadingLevel" },
+        default: 1,
+      },
+    },
+    events: {},
+  },
+  {
+    type: "web",
     name: "t-panel",
     attributes: {},
     events: {},
@@ -121,6 +132,17 @@ export const componentSpec: Component[] = [
 ];
 
 export const subtypes: Record<string, Type> = {
+  THeadingLevel: {
+    kind: "union",
+    types: [
+      { kind: "constant", value: 1 },
+      { kind: "constant", value: 2 },
+      { kind: "constant", value: 3 },
+      { kind: "constant", value: 4 },
+      { kind: "constant", value: 5 },
+      { kind: "constant", value: 6 },
+    ],
+  },
   TCodeDisplayMode: {
     kind: "union",
     types: [

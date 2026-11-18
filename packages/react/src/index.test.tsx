@@ -2,7 +2,7 @@ import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
-import { TButton, TCode, TLink, TPanel, TTabs, TTab, TTextField } from "./index.js";
+import { TButton, TCode, THeading, TLink, TPanel, TTabs, TTab, TTextField } from "./index.js";
 import type { TInputEvent, TTextfield as TTextfieldElement } from "tomas-designsystem";
 import type { RenderResult } from "vitest-browser-react";
 import type { TTabsProps } from "./TTabs.js";
@@ -55,6 +55,13 @@ describe("package", () => {
     function renderCode(props: Partial<TCodeProps> = {}): Promise<RenderResult> {
       return render(<TCode {...props} />);
     }
+  });
+
+  describe("THeading", () => {
+    it("Renders the heading", async () => {
+      const screen = await render(<THeading level={2}>Overskrift</THeading>);
+      await expect.element(screen.getByRole("heading", { level: 2, name: "Overskrift" })).toBeVisible();
+    });
   });
 
   describe("TLink", () => {
