@@ -1,5 +1,6 @@
 import { DocsContext, useOf } from "@storybook/addon-docs/blocks";
 import * as React from "react";
+import { THeading } from "tomas-designsystem-react";
 import { StoriesUtils } from "../utils/StoriesUtils";
 import { TStory } from "./TStory";
 import type { StoriesModule } from "../types/StoriesModule";
@@ -11,7 +12,7 @@ export type TStoriesProps = {
 export function TStories({ of }: TStoriesProps): React.ReactNode {
   return (
     <>
-      <h2>Eksempler</h2>
+      <THeading level={2}>Eksempler</THeading>
       <List of={of} />
     </>
   );

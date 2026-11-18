@@ -1,4 +1,5 @@
 import * as React from "react";
+import { THeading } from "tomas-designsystem-react";
 import { StoriesUtils } from "../utils/StoriesUtils";
 
 export type TStoriesTitleProps = {
@@ -6,5 +7,5 @@ export type TStoriesTitleProps = {
 };
 
 export function TStoriesTitle({ of }: TStoriesTitleProps): React.ReactNode {
-  return <h1>{StoriesUtils.extractTitle(of)}</h1>;
+  return <THeading level={1}>{StoriesUtils.extractTitle(of)}</THeading>;
 }

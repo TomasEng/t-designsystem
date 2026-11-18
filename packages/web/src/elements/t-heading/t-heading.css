@@ -1,0 +1,120 @@
+.main-line {
+  color: var(--t-colour-font);
+  display: flex;
+  align-items: baseline;
+  gap: var(--t-spacing-relative-in-group);
+
+  .hashlink {
+    display: none;
+  }
+
+  &:hover .hashlink {
+    display: inline;
+  }
+}
+
+.level-1 {
+  margin-bottom: var(--t-spacing-heading-bottom-1);
+  margin-top: var(--t-spacing-heading-top-1);
+
+  .main-line {
+    border-bottom: 1px solid var(--t-colour-grey);
+    font-size: var(--t-size-heading-1);
+    font-weight: bold;
+
+    h1 {
+      font-weight: bold;
+    }
+  }
+}
+
+.level-2 {
+  margin-bottom: var(--t-spacing-heading-bottom-2);
+  margin-top: var(--t-spacing-heading-top-2);
+
+  .main-line {
+    font-size: var(--t-size-heading-2);
+    font-weight: normal;
+
+    h2 {
+      font-weight: normal;
+    }
+  }
+}
+
+.level-3 {
+  margin-bottom: var(--t-spacing-heading-bottom-3);
+  margin-top: var(--t-spacing-heading-top-3);
+
+  .main-line {
+    font-size: var(--t-size-heading-3);
+    font-weight: normal;
+
+    h3 {
+      font-weight: normal;
+    }
+  }
+}
+
+.level-4 {
+  margin-bottom: var(--t-spacing-heading-bottom-4);
+  margin-top: var(--t-spacing-heading-top-4);
+
+  .main-line {
+    font-size: var(--t-size-heading-4);
+    font-weight: normal;
+
+    h4 {
+      font-weight: normal;
+    }
+  }
+}
+
+.level-5 {
+  margin-bottom: var(--t-spacing-heading-bottom-5);
+  margin-top: var(--t-spacing-heading-top-5);
+
+  .main-line {
+    font-size: var(--t-size-heading-5);
+    font-weight: bold;
+
+    h5 {
+      font-weight: bold;
+    }
+  }
+}
+
+.level-6 {
+  margin-bottom: var(--t-spacing-heading-bottom-6);
+  margin-top: var(--t-spacing-heading-top-6);
+
+  .main-line {
+    font-size: var(--t-size-heading-6);
+    font-style: italic;
+    font-weight: normal;
+
+    h6 {
+      font-style: italic;
+      font-weight: normal;
+      text-decoration: underline var(--t-colour-grey);
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: var(--t-font-family-heading);
+}
+
+slot[name="note"] {
+  color: var(--t-colour-grey-high-contrast);
+  margin: 0;
+}
+
+::slotted(p[slot="note"]) {
+  font-size: 0.75rem !important;
+  margin: 0 !important;
+}
+

@@ -1,6 +1,6 @@
 import { componentSpec } from "internal/src/componentSpec";
 import * as React from "react";
-import { TCode } from "tomas-designsystem-react";
+import { TCode, THeading } from "tomas-designsystem-react";
 import { TAttributes } from "./TAttributes";
 import styles from "./TSpecs.module.css";
 import type { Component, ElementWithClass, WebComponent } from "internal/src/Component";
@@ -14,7 +14,7 @@ export function TSpecs({ name }: TSpecsProps): React.ReactNode {
 
   return (
     <>
-      <h2>Spesifikasjon</h2>
+      <THeading level={2}>Spesifikasjon</THeading>
       {componentSpec.type === "web" ? (
         <WebComponentSpecs component={componentSpec} />
       ) : (
@@ -31,7 +31,7 @@ type WebComponentSpecsProps = {
 function WebComponentSpecs({ component }: WebComponentSpecsProps): React.ReactNode {
   return (
     <>
-      <h3>Kodenavn</h3>
+      <THeading level={3}>Kodenavn</THeading>
       <table className={styles.specTable}>
         <thead>
           <tr>
