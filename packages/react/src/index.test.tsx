@@ -2,8 +2,8 @@ import React from "react";
 import { describe, expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 import { render } from "vitest-browser-react";
-import { TButton, TCode, THeading, TLink, TPanel, TTabs, TTab, TTextField } from "./index.js";
-import type { TInputEvent, TTextfield as TTextfieldElement } from "tomas-designsystem";
+import { TButton, TCode, THeading, TIframe, TLink, TPanel, TTabs, TTab, TTextField } from "./index.js";
+import type { TIframe as TIframeElement, TInputEvent, TTextfield as TTextfieldElement } from "tomas-designsystem";
 import type { RenderResult } from "vitest-browser-react";
 import type { TTabsProps } from "./TTabs.js";
 import type { TCodeProps, TButtonProps, TLinkProps, TTextFieldProps, TPanelProps } from "./index.js";
@@ -61,6 +61,17 @@ describe("package", () => {
     it("Renders the heading", async () => {
       const screen = await render(<THeading level={2}>Overskrift</THeading>);
       await expect.element(screen.getByRole("heading", { level: 2, name: "Overskrift" })).toBeVisible();
+    });
+  });
+
+  describe("TIframe", () => {
+    it("Renders an iframe with the given srcdoc and title", async () => {
+      const title = "Example iframe";
+      const text = "Iframe content";
+      const screen = await render(<TIframe srcdoc={`<p>${text}</p>`} title={title} />);
+      const element = screen.container.querySelector<TIframeElement>("t-iframe")!;
+      await expect.poll(() => element.iframeDocument?.body.textContent).toBe(text);
+      expect(element.iframe).toHaveAccessibleName(title);
     });
   });
 
