@@ -2,6 +2,7 @@ export type TInputEvent = { value: string };
 export type TKeyboardEvent = { value: string; key: string };
 export type TFocusEvent = { value: string };
 export type THeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
+export type TIframeResizeMode = "none" | "horizontal" | "vertical" | "both";
 export type TCodeDisplayMode = "inline" | "block" | "panel" | "heading-panel";
 export type TTextfieldAttributes = { name?: string; label?: string; value?: string; disabled?: boolean };
 export type TCodeAttributes = {
@@ -12,6 +13,7 @@ export type TCodeAttributes = {
   copyButtonTitle?: string;
 };
 export type THeadingAttributes = { level?: THeadingLevel };
+export type TIframeAttributes = { src?: string; srcdoc?: string; resize?: TIframeResizeMode; title?: string };
 export type TPanelAttributes = {};
 export type TTabsAttributes = {};
 export type TTabAttributes = { heading?: string; name?: string };

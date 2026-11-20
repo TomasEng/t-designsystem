@@ -12,6 +12,7 @@ export type { TTextfieldEvent, TTextfieldEventName } from "./elements/t-textfiel
 
 export { TPanel } from "./elements/t-panel/t-panel.ts";
 export { THeading } from "./elements/t-heading/t-heading.ts";
+export { TIframe } from "./elements/t-iframe/t-iframe.ts";
 
 export { TTab } from "./elements/t-tab/t-tab.ts";
 export { TTabs } from "./elements/t-tabs/t-tabs.ts";

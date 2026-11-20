@@ -104,6 +104,29 @@ export const componentSpec: Component[] = [
   },
   {
     type: "web",
+    name: "t-iframe",
+    attributes: {
+      src: {
+        type: { kind: "string" },
+        default: undefined,
+      },
+      srcdoc: {
+        type: { kind: "string" },
+        default: undefined,
+      },
+      resize: {
+        type: { kind: "reference", name: "TIframeResizeMode" },
+        default: "none",
+      },
+      title: {
+        type: { kind: "string" },
+        default: "",
+      },
+    },
+    events: {},
+  },
+  {
+    type: "web",
     name: "t-panel",
     attributes: {},
     events: {},
@@ -141,6 +164,15 @@ export const subtypes: Record<string, Type> = {
       { kind: "constant", value: 4 },
       { kind: "constant", value: 5 },
       { kind: "constant", value: 6 },
+    ],
+  },
+  TIframeResizeMode: {
+    kind: "union",
+    types: [
+      { kind: "constant", value: "none" },
+      { kind: "constant", value: "horizontal" },
+      { kind: "constant", value: "vertical" },
+      { kind: "constant", value: "both" },
     ],
   },
   TCodeDisplayMode: {
